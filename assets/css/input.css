@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme{
+    --color-CremeEscuro: #656059;
+    --color-Creme: #d8d0c3;
+}
+@font-face {
+  font-family: "Lufga";
+  font-style: light;
+  font-weight: 100;
+  font-display: swap;
+  src: url("/assets/fonts/LufgaExtraLight.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Lufga";
+  font-style: light;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/assets/fonts/LufgaLight.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Lufga";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/LufgaRegular.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Lufga";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/LufgaItalic.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Lufga";
+  font-style: medium;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/assets/fonts/LufgaMedium.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Lufga";
+  font-style: bold;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/assets/fonts/LufgaSemiBold.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Lufga";
+  font-style: bolder;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/assets/fonts/LufgaBold.ttf") format("ttf");
+}
+@font-face {
+  font-family: "MoonDance";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/MoonDance-Regular.ttf") format("ttf");
+}
+
+@layer base{
+    /* h1{
+        color: green;
+    } */
+     a{
+        color: white;
+     }
+     
+     
+}
+
+ @layer components{ /* cards, footers, nav etc */
+
+}
+
+/* @utilities nome {
+    exemplo:
+    @apply flex justify-center items-center > aí no css é so colocar class="(nome)"
+} */
+ 

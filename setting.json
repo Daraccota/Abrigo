@@ -1,0 +1,24 @@
+{
+    "window.commandCenter": false,
+    "workbench.layoutControl.enabled": false,
+    "workbench.colorTheme": "Dracula Pro",
+    "workbench.startupEditor": "none",
+    "files.autoSave": "onFocusChange",
+    "editor.fontSize": 15,
+    "editor.formatOnSave": true,
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": false,
+    "editor.wordWrap": "on",
+    "explorer.confirmDelete": false,
+    "editor.fontFamily": "Fira Code Retina",
+    "editor.fontLigatures": true,
+    "git.ignoreMissingGitWarning": true,
+    "explorer.confirmDragAndDrop": false,
+    "editor.quickSuggestions": {
+        "strings": "on"
+    },
+    "tailwindCSS.includeLanguages": {
+        "php": "php"
+
+    }
+}
