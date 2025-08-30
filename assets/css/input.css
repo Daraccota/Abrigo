@@ -1,9 +1,6 @@
 @import "tailwindcss";
 
-@theme{
-    --color-CremeEscuro: #656059;
-    --color-Creme: #d8d0c3;
-}
+
 @font-face {
   font-family: "Lufga";
   font-style: light;
@@ -61,6 +58,14 @@
   src: url("/assets/fonts/MoonDance-Regular.ttf") format("ttf");
 }
 
+@theme{
+    --color-CremeEscuro: #656059;
+    --color-Creme: #d8d0c3;
+    --text-Fluid: min(10vw,70px);
+    --font-lufga: "Lufga", sans-serif;
+    --font-moondance: "MoonDance", sans-serif;
+}
+
 @layer base{
     /* h1{
         color: green;
@@ -76,8 +81,34 @@
 
 }
 
-/* @utilities nome {
+/* @utility nome {
     exemplo:
     @apply flex justify-center items-center > aí no css é so colocar class="(nome)"
 } */
+ @utility tituloMobile{
+  @apply text-[min(6vw,70px)] font-lufga font-[750];
+ }
+  @utility textoMobile{
+  @apply text-[min(4.3vw,70px)] font-lufga font-bold;
+ }
  
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: rgb(255, 255, 255);
+  margin: 3px 0;
+  border-radius: 20%;
+  transition: all 0.3s ease;
+  transform-origin: 7%;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translateY(0px);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translateY(0px);
+}
