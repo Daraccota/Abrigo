@@ -56,10 +56,12 @@
   font-weight: 400;
   font-display: swap;
   src: url("/assets/fonts/MoonDance-Regular.ttf") format("ttf");
+  color: #81796f;
 }
 
 @theme{
     --color-CremeEscuro: #656059;
+    --color-CremeEscuro2: #81796f;
     --color-Creme: #d8d0c3;
     --text-Fluid: min(10vw,70px);
     --font-lufga: "Lufga", sans-serif;
@@ -78,19 +80,40 @@
 }
 
  @layer components{ /* cards, footers, nav etc */
-
+  .card{
+    @apply bg-white border-CremeEscuro border-2 w-4/5 rounded-md py-5 px-16
+  }
+  .card h1{
+    @apply text-black text-[clamp(1.3rem,5vw,70px)] font-lufga font-[600] antialiased 
+  }  
+  .card p{
+    @apply text-black text-[clamp(1rem,4.9vw,40px)] font-lufga font-[400] antialiased 
+  }
+  .card .badge{                                                                       /*TODO: Melhorar as bordas nisso aqui pqp*/
+    @apply bg-CremeEscuro h-[80PX] w-[60PX] absolute -my-5 -mx-16; clip-path: path("M 0,0 L 60,0 L 46,15 L 46,60 A 10,0 0,0,1 23,80 L 0,60 L 0,0 Z") /*80Y 60X*/
+  }
 }
 
 /* @utility nome {
     exemplo:
     @apply flex justify-center items-center > aí no css é so colocar class="(nome)"
 } */
- @utility tituloMobile{
-  @apply text-[min(6vw,70px)] font-lufga font-[750];
- }
-  @utility textoMobile{
-  @apply text-[min(4.3vw,70px)] font-lufga font-bold;
- }
+@utility tituloMobile{
+  @apply text-[clamp(1.5rem,7vw,70px)] font-lufga font-[800] antialiased;
+}
+@utility subtituloMobile{
+  @apply text-[clamp(1.2rem,5.5vw,50px)] font-lufga font-[780];
+}
+@utility textoMobile{
+  @apply text-[clamp(1rem,4.9vw,40px)] font-lufga font-bold text-start my-3;
+}
+@utility textoBotao{
+  @apply text-[clamp(1rem,4.9vw,40px)] font-lufga font-bold text-start;
+}
+@utility textoMobileSelecionado{
+  @apply text-[clamp(1rem,4.9vw,40px)] font-lufga font-bold italic text-CremeEscuro;
+}
+
  
 .hamburger span {
   display: block;

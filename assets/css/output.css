@@ -9,16 +9,15 @@
       "Courier New", monospace;
     --color-amber-300: oklch(87.9% 0.169 91.605);
     --color-green-500: oklch(72.3% 0.219 149.579);
-    --color-pink-500: oklch(65.6% 0.241 354.308);
+    --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
     --font-weight-bold: 700;
-    --blur-sm: 8px;
-    --default-transition-duration: 150ms;
-    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    --radius-md: 0.375rem;
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --color-CremeEscuro: #656059;
+    --color-CremeEscuro2: #81796f;
     --color-Creme: #d8d0c3;
     --font-lufga: "Lufga", sans-serif;
   }
@@ -175,12 +174,6 @@
   .absolute {
     position: absolute;
   }
-  .relative {
-    position: relative;
-  }
-  .inset-0 {
-    inset: calc(var(--spacing) * 0);
-  }
   .top-20 {
     top: calc(var(--spacing) * 20);
   }
@@ -190,8 +183,16 @@
   .mx-7 {
     margin-inline: calc(var(--spacing) * 7);
   }
-  .mx-auto {
-    margin-inline: auto;
+  .textoMobile {
+    margin-block: calc(var(--spacing) * 3);
+    text-align: start;
+    font-family: var(--font-lufga);
+    font-size: clamp(1rem, 4.9vw, 40px);
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
+  }
+  .my-2 {
+    margin-block: calc(var(--spacing) * 2);
   }
   .mt-3 {
     margin-top: calc(var(--spacing) * 3);
@@ -199,14 +200,20 @@
   .mr-36 {
     margin-right: calc(var(--spacing) * 36);
   }
+  .mb-12 {
+    margin-bottom: calc(var(--spacing) * 12);
+  }
+  .ml-4 {
+    margin-left: calc(var(--spacing) * 4);
+  }
   .flex {
     display: flex;
   }
   .hidden {
     display: none;
   }
-  .table {
-    display: table;
+  .inline-block {
+    display: inline-block;
   }
   .h-10 {
     height: calc(var(--spacing) * 10);
@@ -220,14 +227,14 @@
   .h-80 {
     height: calc(var(--spacing) * 80);
   }
-  .h-full {
-    height: 100%;
+  .h-\[1px\] {
+    height: 1px;
   }
-  .w-3 {
-    width: calc(var(--spacing) * 3);
+  .w-4\/5 {
+    width: calc(4/5 * 100%);
   }
-  .w-3\/4 {
-    width: calc(3/4 * 100%);
+  .w-9\/10 {
+    width: calc(9/10 * 100%);
   }
   .w-10 {
     width: calc(var(--spacing) * 10);
@@ -244,14 +251,8 @@
   .w-lvw {
     width: 100lvw;
   }
-  .border-collapse {
-    border-collapse: collapse;
-  }
-  .transform {
-    transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
-  }
-  .resize {
-    resize: both;
+  .flex-1 {
+    flex: 1;
   }
   .flex-col {
     flex-direction: column;
@@ -265,12 +266,11 @@
   .justify-center {
     justify-content: center;
   }
+  .justify-items-center {
+    justify-items: center;
+  }
   .justify-self-center {
     justify-self: center;
-  }
-  .border {
-    border-style: var(--tw-border-style);
-    border-width: 1px;
   }
   .bg-Creme {
     background-color: var(--color-Creme);
@@ -278,95 +278,46 @@
   .bg-CremeEscuro {
     background-color: var(--color-CremeEscuro);
   }
-  .bg-\[\.\/assets\/img\/veio\.png\] {
-    background-color: ./assets/img/veio.png;
-  }
-  .bg-\[\/Abrigo\/assets\/img\/veio\.png\] {
-    background-color: /Abrigo/assets/img/veio.png;
-  }
-  .bg-\[\/assets\/img\/veio\.png\] {
-    background-color: /assets/img/veio.png;
-  }
-  .bg-\[Abrigo\/assets\/img\/veio\.png\] {
-    background-color: Abrigo/assets/img/veio.png;
-  }
-  .bg-\[assets\/img\/veio\.png\] {
-    background-color: assets/img/veio.png;
-  }
-  .bg-\[url\/Abrigo\/assets\/img\/veio\.png\] {
-    background-color: url/Abrigo/assets/img/veio.png;
-  }
   .bg-amber-300 {
     background-color: var(--color-amber-300);
   }
   .bg-green-500 {
     background-color: var(--color-green-500);
   }
-  .bg-pink-500 {
-    background-color: var(--color-pink-500);
-  }
-  .bg-white {
-    background-color: var(--color-white);
-  }
-  .bg-white\/40 {
-    background-color: color-mix(in srgb, #fff 40%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-white) 40%, transparent);
-    }
-  }
-  .bg-\[url\(\/Abrigo\/assets\/img\/veio\.png\)\] {
-    background-image: url(/Abrigo/assets/img/veio.png);
-  }
-  .bg-cover {
-    background-size: cover;
-  }
-  .bg-center {
-    background-position: center;
-  }
-  .bg-no-repeat {
-    background-repeat: no-repeat;
-  }
-  .object-cover {
-    object-fit: cover;
-  }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
   }
-  .textoMobile {
+  .textoBotao {
+    text-align: start;
     font-family: var(--font-lufga);
-    font-size: min(4.3vw, 70px);
+    font-size: clamp(1rem, 4.9vw, 40px);
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
   }
+  .textoMobileSelecionado {
+    font-family: var(--font-lufga);
+    font-size: clamp(1rem, 4.9vw, 40px);
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-CremeEscuro);
+    font-style: italic;
+  }
   .tituloMobile {
     font-family: var(--font-lufga);
-    font-size: min(6vw, 70px);
-    --tw-font-weight: 750;
-    font-weight: 750;
+    font-size: clamp(1.5rem, 7vw, 70px);
+    --tw-font-weight: 800;
+    font-weight: 800;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  .text-CremeEscuro {
-    color: var(--color-CremeEscuro);
+  .subtituloMobile {
+    font-family: var(--font-lufga);
+    font-size: clamp(1.2rem, 5.5vw, 50px);
+    --tw-font-weight: 780;
+    font-weight: 780;
   }
-  .underline {
-    text-decoration-line: underline;
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
-  }
-  .backdrop-blur-sm {
-    --tw-backdrop-blur: blur(var(--blur-sm));
-    -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
-    backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
-  }
-  .backdrop-filter {
-    -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
-    backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
-  }
-  .transition {
-    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, visibility, content-visibility, overlay, pointer-events;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  .text-CremeEscuro2 {
+    color: var(--color-CremeEscuro2);
   }
   .md\:flex {
     @media (width >= 48rem) {
@@ -454,13 +405,52 @@
   font-weight: 400;
   font-display: swap;
   src: url("/assets/fonts/MoonDance-Regular.ttf") format("ttf");
+  color: #81796f;
 }
 @layer base {
   a {
     color: white;
   }
 }
-@layer components;
+@layer components {
+  .card {
+    width: calc(4/5 * 100%);
+    border-radius: var(--radius-md);
+    border-style: var(--tw-border-style);
+    border-width: 2px;
+    border-color: var(--color-CremeEscuro);
+    background-color: var(--color-white);
+    padding-inline: calc(var(--spacing) * 16);
+    padding-block: calc(var(--spacing) * 5);
+  }
+  .card h1 {
+    font-family: var(--font-lufga);
+    font-size: clamp(1.3rem, 5vw, 70px);
+    --tw-font-weight: 600;
+    font-weight: 600;
+    color: var(--color-black);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .card p {
+    font-family: var(--font-lufga);
+    font-size: clamp(1rem, 4.9vw, 40px);
+    --tw-font-weight: 400;
+    font-weight: 400;
+    color: var(--color-black);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .card .badge {
+    position: absolute;
+    margin-inline: calc(var(--spacing) * -16);
+    margin-block: calc(var(--spacing) * -5);
+    height: 80PX;
+    width: 60PX;
+    background-color: var(--color-CremeEscuro);
+    clip-path: path("M 0,0 L 60,0 L 46,15 L 46,60 A 10,0 0,0,1 23,80 L 0,60 L 0,0 Z");
+  }
+}
 .hamburger span {
   display: block;
   width: 100%;
@@ -480,23 +470,7 @@
 .hamburger.open span:nth-child(3) {
   transform: rotate(-45deg) translateY(0px);
 }
-@property --tw-rotate-x {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-rotate-y {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-rotate-z {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-skew-x {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-skew-y {
+@property --tw-font-weight {
   syntax: "*";
   inherits: false;
 }
@@ -505,71 +479,11 @@
   inherits: false;
   initial-value: solid;
 }
-@property --tw-font-weight {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
-@property --tw-backdrop-blur {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-backdrop-brightness {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-backdrop-contrast {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-backdrop-grayscale {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-backdrop-hue-rotate {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-backdrop-invert {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-backdrop-opacity {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-backdrop-saturate {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-backdrop-sepia {
-  syntax: "*";
-  inherits: false;
-}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
-      --tw-rotate-x: initial;
-      --tw-rotate-y: initial;
-      --tw-rotate-z: initial;
-      --tw-skew-x: initial;
-      --tw-skew-y: initial;
-      --tw-border-style: solid;
       --tw-font-weight: initial;
-      --tw-outline-style: solid;
-      --tw-backdrop-blur: initial;
-      --tw-backdrop-brightness: initial;
-      --tw-backdrop-contrast: initial;
-      --tw-backdrop-grayscale: initial;
-      --tw-backdrop-hue-rotate: initial;
-      --tw-backdrop-invert: initial;
-      --tw-backdrop-opacity: initial;
-      --tw-backdrop-saturate: initial;
-      --tw-backdrop-sepia: initial;
+      --tw-border-style: solid;
     }
   }
 }
