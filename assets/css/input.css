@@ -6,57 +6,56 @@
   font-style: light;
   font-weight: 100;
   font-display: swap;
-  src: url("/assets/fonts/LufgaExtraLight.ttf") format("ttf");
+  src: url("/assets/fonts/LufgaExtraLight.ttf") format("truetype");
 }
 @font-face {
   font-family: "Lufga";
   font-style: light;
   font-weight: 300;
   font-display: swap;
-  src: url("/assets/fonts/LufgaLight.ttf") format("ttf");
+  src: url("/assets/fonts/LufgaLight.ttf") format("truetype");
 }
 @font-face {
   font-family: "Lufga";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/assets/fonts/LufgaRegular.ttf") format("ttf");
+  src: url("/assets/fonts/LufgaRegular.ttf") format("truetype");
 }
 @font-face {
   font-family: "Lufga";
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url("/assets/fonts/LufgaItalic.ttf") format("ttf");
+  src: url("/assets/fonts/LufgaItalic.ttf") format("truetype");
 }
 @font-face {
   font-family: "Lufga";
   font-style: medium;
   font-weight: 500;
   font-display: swap;
-  src: url("/assets/fonts/LufgaMedium.ttf") format("ttf");
+  src: url("/assets/fonts/LufgaMedium.ttf") format("truetype");
 }
 @font-face {
   font-family: "Lufga";
   font-style: bold;
   font-weight: 600;
   font-display: swap;
-  src: url("/assets/fonts/LufgaSemiBold.ttf") format("ttf");
+  src: url("/assets/fonts/LufgaSemiBold.ttf") format("truetype");
 }
 @font-face {
   font-family: "Lufga";
   font-style: bolder;
   font-weight: 700;
   font-display: swap;
-  src: url("/assets/fonts/LufgaBold.ttf") format("ttf");
+  src: url("/assets/fonts/LufgaBold.ttf") format("truetype");
 }
 @font-face {
   font-family: "MoonDance";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/assets/fonts/MoonDance-Regular.ttf") format("ttf");
-  color: #81796f;
+  src: url("/assets/fonts/MoonDance-Regular.ttf") format("truetype");
 }
 
 @theme{
@@ -64,8 +63,8 @@
     --color-CremeEscuro2: #81796f;
     --color-Creme: #d8d0c3;
     --text-Fluid: min(10vw,70px);
-    --font-lufga: "Lufga", sans-serif;
-    --font-moondance: "MoonDance", sans-serif;
+    --font-Lufga: "Lufga", sans-serif;
+    --font-Moondance: "MoonDance", sans-serif;
 }
 
 @layer base{
@@ -81,20 +80,22 @@
 
  @layer components{ /* cards, footers, nav etc */
   .card{
-    @apply bg-white border-CremeEscuro border-2 w-4/5 rounded-md py-5 px-16
+    @apply relative bg-white border-CremeEscuro border-2 w-4/5 rounded-md py-5 px-16 my-8;
   }
   .card h1{
-    @apply text-black text-[clamp(1.3rem,5vw,70px)] font-lufga font-[600] antialiased 
+    @apply text-black text-[clamp(1.3rem,5vw,70px)] font-Lufga font-[600] antialiased  italic
   }  
   .card p{
-    @apply text-black text-[clamp(1rem,4.9vw,40px)] font-lufga font-[400] antialiased 
+    @apply text-black text-[clamp(1rem,4.9vw,40px)] font-Lufga font-[400] antialiased mt-2 italic
   }
-  .card .badge{                                                                       /*TODO: 31/08 Melhorar as bordas nisso aqui pqp*/ /*00:42 01/09 Acho que consegui (?)*/
-    @apply bg-CremeEscuro h-15 w-15 absolute -my-5 -mx-16; clip-path: path("M 0,0 L 60,0 L 46,5 L 46,40 L 46,40 A 24,19 0,0,1 0,40 L 0,0 Z")/*60x 60y*/
+  .card .badge{
+  @apply absolute -top-0 -left-0 h-15 w-15 flex items-center justify-center
   }
-  .card .badge .icons{
-      @apply w-8 h-8 text-white absolute top-1/2 left-1/2;
-      transform: translate(-70%, -70%);
+  .card .badge .badgetexture{ /*TODO: 31/08 Melhorar as bordas nisso aqui pqp*/ /*00:42 01/09 Acho que consegui (?)*/ /*HORAS PERDIDAS NISSO ATÉ 01/09: 6HRS*/
+    @apply  h-full w-full text-CremeEscuro /*clip-path: path("M 0,0 L 60,0 L 46,5 L 46,40 L 46,40 A 24,19 0,0,1 0,40 L 0,0 Z")60x 60y*/
+  }
+.card .badge .icons{
+  @apply absolute w-8 h-8 text-white inset-1/2; transform: translate(-70%, -70%)
   }
 }
 
@@ -103,20 +104,24 @@
     @apply flex justify-center items-center > aí no css é so colocar class="(nome)"
 } */
 @utility tituloMobile{
-  @apply text-[clamp(1.5rem,7vw,70px)] font-lufga font-[800] antialiased;
+  @apply text-[clamp(1.5rem,7vw,70px)] font-Lufga font-bold antialiased;
 }
 @utility subtituloMobile{
-  @apply text-[clamp(1.2rem,5.5vw,50px)] font-lufga font-[780];
+  @apply text-[clamp(1.2rem,5.5vw,50px)] font-Lufga font-[780];
 }
 @utility textoMobile{
-  @apply text-[clamp(1rem,4.9vw,40px)] font-lufga font-bold text-start my-3;
+  @apply text-[clamp(1rem,4.9vw,40px)] font-Lufga font-bold text-start my-3;
 }
 @utility textoBotao{
-  @apply text-[clamp(1rem,4.9vw,40px)] font-lufga font-bold text-start;
+  @apply text-[clamp(1rem,4.9vw,40px)] font-Lufga font-bold text-start;
 }
 @utility textoMobileSelecionado{
-  @apply text-[clamp(1rem,4.9vw,40px)] font-lufga font-bold italic text-CremeEscuro;
+  @apply text-[clamp(1rem,4.9vw,40px)] font-Lufga font-bold italic text-CremeEscuro;
 }
+@utility tituloSec{
+  @apply text-[clamp(1.5rem,7vw,70px)] font-[var(--font-Moondance)] font-normal antialiased;
+}
+
 
  
 .hamburger span {
@@ -127,7 +132,7 @@
   margin: 3px 0;
   border-radius: 20%;
   transition: all 0.3s ease;
-  transform-origin: 7%;
+  transform-origin: 15%;
 }
 
 .hamburger.open span:nth-child(1) {

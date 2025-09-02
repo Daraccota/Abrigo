@@ -55,7 +55,7 @@
     src="/Abrigo/assets/img/veio.png " alt="" srcset="">
 
     <!-- Seção com o texto inicial -->
-    <section class=" w-4/5 mx-7 mt-3 bg-pink-000"> 
+    <div class=" w-4/5 mx-7 mt-3 bg-pink-000"> 
       <h1 class="tituloMobile text-CremeEscuro2">Há mais de 30 anos <br> 
       <h2 class="subtituloMobile text-CremeEscuro2 mb-12">acolhendo vidas com amor e dignidade</h2>
       </h1>
@@ -74,11 +74,17 @@
         <button class="textoBotao text-CremeEscuro2 bg-green-000">Fazer doação</button>
         <div class="my-2 bg-CremeEscuro h-[1px] w-9/10 justify-self-center"></div>
       </div>
-    </section>
+      </div>
 
     <div class="cards flex-1 justify-items-center">
         <div class="card">
           <div class="badge ">
+          <svg xmlns="http://www.w3.org/2000/svg" 
+            class="badgetexture"
+            viewBox="0 0 60 60" 
+            preserveAspectRatio="xMidYMid meet">
+            <path d="M 0,0 L 60,0 L 46,5 L 46,40 A 24,19 0,0,1 0,40 L 0,0 Z" fill="currentColor"/>
+          </svg>
             <svg xmlns="http://www.w3.org/2000/svg" 
               class="icons" 
               fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -94,20 +100,32 @@
         </div>
         <div class="card">
           <div class="badge ">
-            <svg xmlns="http://www.w3.org/2000/svg" 
-              class="icons" 
-              fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" 
+            class="badgetexture"
+            viewBox="0 0 60 60" 
+            preserveAspectRatio="xMidYMid meet">
+            <path d="M 0,0 L 60,0 L 46,5 L 46,40 A 24,19 0,0,1 0,40 L 0,0 Z" fill="currentColor"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" 
+            class="icons" 
+            fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
           </div>
           <h1 class="">+30 anos de historia</h1>
           <p class="">Experiencia e tradição no cuidado com pessoas idosas</p>
         </div>
         <div class="card">
           <div class="badge ">
+          <svg xmlns="http://www.w3.org/2000/svg" 
+            class="badgetexture"
+            viewBox="0 0 60 60" 
+            preserveAspectRatio="xMidYMid meet">
+            <path d="M 0,0 L 60,0 L 46,5 L 46,40 A 24,19 0,0,1 0,40 L 0,0 Z" fill="currentColor"/>
+          </svg>
             <svg xmlns="http://www.w3.org/2000/svg" 
                 class="icons" 
                 fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -120,7 +138,19 @@
     </div>
   </header>
 
-
+  <section class="">
+    <h1 class="tituloSec text-center">Historias que inspiram</h1>
+    <div class="Colacao flex flex-row justify-center w-[88vw] h-[46vh] gap-4 justify-self-center">
+      <div class="flex flex-col justify-center ">
+        <img class="w-[42vw] h-[24vh] rounded-xl" src="https://picsum.photos/500/500" alt="">
+        <img class="w-[36vw] h-[18vh] rounded-xl place-self-end mt-auto" src="https://picsum.photos/500/500" alt="">
+      </div>
+      <div class="flex flex-col justify-center">
+        <img class="w-[28vw] h-[14vh] rounded-xl" src="https://picsum.photos/500/500" alt="">
+        <img class="w-[40vw] h-[28vh] rounded-xl mt-auto " src="https://picsum.photos/500/500" alt="">
+      </div>
+    </div>
+  </section>
 
   <script src="/Abrigo/assets/js/btn.js"></script>
 </body>
