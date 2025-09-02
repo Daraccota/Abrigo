@@ -76,7 +76,8 @@
       </div>
       </div>
 
-    <div class="cards flex-1 justify-items-center">
+      <!-- EU ODEIO ESSES CARDS PUTA QUE O PARIU, JA PERDI A CONTA DE QUANTAS VEZES EU TIVE QUE VOLTAR AQUI RESOLVER ALGUMA MERDA. PUTA QUE O PARIU -->
+    <div class="cards flex flex-col gap-6 justify-items-center justify-center items-center">
         <div class="card">
           <div class="badge ">
           <svg xmlns="http://www.w3.org/2000/svg" 
@@ -115,8 +116,10 @@
             <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
           </svg>
           </div>
-          <h1 class="">+30 anos de historia</h1>
-          <p class="">Experiencia e tradição no cuidado com pessoas idosas</p>
+          <div class="items-center justify-center">
+            <h1 class="">+30 anos de historia</h1>
+            <p class="">Experiencia e tradição no cuidado com pessoas idosas</p>
+          </div>
         </div>
         <div class="card">
           <div class="badge ">
@@ -138,9 +141,10 @@
     </div>
   </header>
 
-  <section class="">
-    <h1 class="tituloSec text-center">Historias que inspiram</h1>
-    <div class="Colacao flex flex-row justify-center w-[88vw] h-[46vh] gap-4 justify-self-center">
+  <section class=" bg-gray-100">
+    <h1 class="tituloSec py-10 text-center">Historias que inspiram</h1>
+
+    <div class="Colacao flex flex-row justify-center w-[88vw] h-[46vh] gap-4 justify-self-center my-16">
       <div class="flex flex-col justify-center ">
         <img class="w-[42vw] h-[24vh] rounded-xl" src="https://picsum.photos/500/500" alt="">
         <img class="w-[36vw] h-[18vh] rounded-xl place-self-end mt-auto" src="https://picsum.photos/500/500" alt="">
@@ -149,6 +153,14 @@
         <img class="w-[28vw] h-[14vh] rounded-xl" src="https://picsum.photos/500/500" alt="">
         <img class="w-[40vw] h-[28vh] rounded-xl mt-auto " src="https://picsum.photos/500/500" alt="">
       </div>
+    </div>
+    <div class="mx-7">
+      <P class="textoMobile text-CremeEscuro">Cada idoso do nosso lar traz consigo uma vida cheia de memórias, 
+        aprendizados e momentos inesquecíveis.</P>
+      <P class="textoMobile text-CremeEscuro">Aqui, cada rosto guarda uma história única. São pessoas que viveram,
+         sonharam e ainda têm muito para compartilhar.</P>
+      <P class="textoMobile text-CremeEscuro">Ao conhecê-los, você descobre não apenas histórias do passado, 
+        mas também a alegria do presente e a esperança no futuro.</P>
     </div>
   </section>
 

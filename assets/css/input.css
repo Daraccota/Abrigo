@@ -62,6 +62,7 @@
     --color-CremeEscuro: #656059;
     --color-CremeEscuro2: #81796f;
     --color-Creme: #d8d0c3;
+    --color-CremeClaro:#e5e5e5;
     --text-Fluid: min(10vw,70px);
     --font-Lufga: "Lufga", sans-serif;
     --font-Moondance: "MoonDance", sans-serif;
@@ -89,13 +90,13 @@
     @apply text-black text-[clamp(1rem,4.9vw,40px)] font-Lufga font-[400] antialiased mt-2 italic
   }
   .card .badge{
-  @apply absolute -top-0 -left-0 h-15 w-15 flex items-center justify-center
+  @apply absolute -top-0 -left-0  flex items-start justify-start
   }
-  .card .badge .badgetexture{ /*TODO: 31/08 Melhorar as bordas nisso aqui pqp*/ /*00:42 01/09 Acho que consegui (?)*/ /*HORAS PERDIDAS NISSO ATÉ 01/09: 6HRS*/
-    @apply  h-full w-full text-CremeEscuro /*clip-path: path("M 0,0 L 60,0 L 46,5 L 46,40 L 46,40 A 24,19 0,0,1 0,40 L 0,0 Z")60x 60y*/
+  .card .badge .badgetexture{ /*TODO: 31/08 Melhorar as bordas nisso aqui pqp*/ /*00:42 01/09 Acho que consegui (?)*/ /*HORAS PERDIDAS NISSO ATÉ 01/09: 6HRS* 02/09: 7hrs*/
+    @apply self-start h-4/10 w-2/10 text-CremeEscuro /*clip-path: path("M 0,0 L 60,0 L 46,5 L 46,40 L 46,40 A 24,19 0,0,1 0,40 L 0,0 Z")60x 60y*/
   }
 .card .badge .icons{
-  @apply absolute w-8 h-8 text-white inset-1/2; transform: translate(-70%, -70%)
+  @apply absolute h-6/10 w-3/10 text-white; transform: translate(-24%, 14%)
   }
 }
 
@@ -103,6 +104,8 @@
     exemplo:
     @apply flex justify-center items-center > aí no css é so colocar class="(nome)"
 } */
+
+/* TODO: FONTES NÃO FUNCIONAM */
 @utility tituloMobile{
   @apply text-[clamp(1.5rem,7vw,70px)] font-Lufga font-bold antialiased;
 }
@@ -110,7 +113,7 @@
   @apply text-[clamp(1.2rem,5.5vw,50px)] font-Lufga font-[780];
 }
 @utility textoMobile{
-  @apply text-[clamp(1rem,4.9vw,40px)] font-Lufga font-bold text-start my-3;
+  @apply text-[clamp(1rem,4.9vw,40px)] font-Lufga font-bold my-3;
 }
 @utility textoBotao{
   @apply text-[clamp(1rem,4.9vw,40px)] font-Lufga font-bold text-start;
