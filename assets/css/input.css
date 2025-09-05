@@ -95,8 +95,14 @@
   .card .badge .badgetexture{ /*TODO: 31/08 Melhorar as bordas nisso aqui pqp*/ /*00:42 01/09 Acho que consegui (?)*/ /*HORAS PERDIDAS NISSO ATÉ 01/09: 6HRS* 02/09: 7hrs*/
     @apply self-start h-4/10 w-2/10 text-CremeEscuro /*clip-path: path("M 0,0 L 60,0 L 46,5 L 46,40 L 46,40 A 24,19 0,0,1 0,40 L 0,0 Z")60x 60y*/
   }
-.card .badge .icons{
-  @apply absolute h-6/10 w-3/10 text-white; transform: translate(-24%, 14%)
+  .card .badge .icons{
+    @apply absolute h-6/10 w-3/10 text-white; transform: translate(-24%, 14%)
+    }
+  .itemcarrosel{
+    @apply duration-700 ease-in-out
+  }
+  .datacarrosel{
+    @apply text-end text-[clamp(0.5rem,2vw,20px)] mx-4 my-2 font-Lufga font-light text-gray-500
   }
 }
 
