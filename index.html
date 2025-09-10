@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-
+  <!-- NAV -->
   <nav class="h-20 bg-CremeEscuro flex items-center justify-around ">
     <div class="logo h-16 mr-36 w-16  bg-amber-300 lg:ml-1">
       <img class="h-16 w-16 justify-self-center" src="https://picsum.photos/200 " alt="" srcset="">
@@ -29,7 +29,7 @@
       <a href="#" class="py-2">Lorem Ipsium</a>
       <a href="#" class="py-2">Lorem Ipsium</a>
     </div>
-    <!-- nav que num é mobile -->
+    <!-- nav que não é mobile -->
     <div class="links hidden md:flex justify-center align-items-center lg:mx-20">
       <ul class="md:flex md:gap-5 ">
         <li>
@@ -51,7 +51,7 @@
     </div>
     <button class="hidden md:flex button h-10 w-20 bg-green-500 lg:mr-30"></button>
   </nav>
-
+  <!-- Hero section -->
   <header class="bg-Creme">
     <img class="flex h-80 w-lvw justify-self-center color" 
     src="/Abrigo/assets/img/veio.png " alt="" srcset="">
@@ -78,6 +78,7 @@
       </div>
       </div>
 
+      <!-- Cards -->
       <!-- EU ODEIO ESSES CARDS PUTA QUE O PARIU, JA PERDI A CONTA DE QUANTAS VEZES EU TIVE QUE VOLTAR AQUI RESOLVER ALGUMA MERDA. PUTA QUE O PARIU -->
     <div class="cards flex flex-col gap-6 justify-items-center justify-center items-center">
         <div class="card">
@@ -143,9 +144,10 @@
     </div>
   </header>
 
+  <!-- Seção com Historias que Inspiram -->
   <section class=" bg-gray-100">
     <h1 class="tituloSec py-10 text-center">Historias que inspiram</h1>
-
+    <!-- Colagem de fotos -->
     <div class="Colacao flex flex-row justify-center w-[88vw] h-[46vh] gap-4 justify-self-center my-16">
       <div class="flex flex-col justify-center ">
         <img class="w-[42vw] h-[24vh] rounded-xl" src="https://picsum.photos/500/500" alt="">
@@ -173,8 +175,8 @@
             <div class="itemcarrossel " data-carousel-item>
                 <div class="bg-white w-6/10 h-8/10 rounded-xl absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
                     <div class="div"> 
-                      <p class="datacarrossel">12/08/2021</p>
-                      <div class="flex"> <!-- Avaliação por estrelas --> <!-- TODO: Usar um loop no javascript pra isso, mas agora eu to muito cansado -->
+                      <p class="datacarrossel">12/08/2021</p> <!-- Aqui entra a data do depoimento -->
+                      <div class="flex"> <!-- Avaliação por estrelas (usar PHP pra renderizar cheias/cinzas) --> 
                           <svg class="w-1/22 h-1/22 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
                               <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
                           </svg>
@@ -191,16 +193,16 @@
                               <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
                           </svg>
                       </div>
-                      <div class="flex items-center mx-4 my-2"><!--foto e texto dentro do carrosel -->
+                      <div class="flex items-center mx-4 my-2"><!--foto e texto do depoimento -->
                         <img class=" rounded-full w-[14vw] h-[8vh] "src="https://picsum.photos/200" alt="">
                         <p class="text-[clamp(0.6rem,2vw,20px)] font-lufga font-medium ml-2">Todos os dias me sinto amada e lembrada</p>
                       </div>
-                      <p class="datacarrossel">Dona Helena, 72 anos</p>
+                      <p class="datacarrossel">Dona Helena, 72 anos</p> <!-- Nome e idade -->
                     </div>
                 </div>
             </div>
             <!-- Item 2 -->
-            <div class="itemcarrossel " data-carousel-item>
+            <div class="itemcarrossel " data-carousel-item> <!--Por favor, tentem loopar o item no php, para não ser necessário escrever manualmente os X items no html, isso é horroroso-->
                 <div class="bg-white w-6/10 h-8/10 rounded-xl absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
                     <div class="div"> 
                       <p class="datacarrossel">12/08/2021</p>
@@ -229,7 +231,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Item 3 --> <!-- Por enquanto não vou mudar, preciso melhorar isso no javascript, ta MUITO feio -->
+            <!-- Item 3 --> <!-- Por enquanto não vou mudar, é necessário fazer um looping, não pode ser colocado cru no html, ta MUITO feio -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
                 <img src="https://picsum.photos/200" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
             </div>
@@ -267,6 +269,13 @@
                 <span class="sr-only">Próximo</span>
             </span>
         </button>
+    </div>
+    <!-- Conheça os idosos que moram no abrigo -->
+    <div class="flex items-center flex-col">
+      <h2 class="text-[clamp(0.8rem,2.5vw,25px)] font-Lufga font-bold text-CremeEscuro2">
+        Conheça os idosos que moram no abrigo
+      </h2>
+      <button class="bg-CremeEscuro rounded-xl flex">Perfil dos idosos</button>
     </div>
 
   </section>
