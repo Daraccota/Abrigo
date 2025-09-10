@@ -1,0 +1,9 @@
+# Arquivos HTML/PHP renderizados 
+
+(
+    Arquivos HTML e PHP: São arquivos de texto que contêm código. O HTML define a estrutura de uma página web, e o PHP é uma linguagem de programação que roda no servidor para gerar conteúdo dinâmico (por exemplo, buscar dados de um banco de dados e exibi-los na página).
+)
+
+(
+    Renderizar: É a ação de "traduzir" ou "processar" esse código. Um navegador não entende o código PHP diretamente. Ele envia a requisição para um servidor que processa o PHP, gera um HTML final e, então, envia esse HTML para o navegador. O navegador, por sua vez, renderiza o HTML (e o CSS e JavaScript) para exibir a página como a vemos na tela.
+)
