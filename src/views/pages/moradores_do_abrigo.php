@@ -162,7 +162,7 @@ body {
 <div class="sidebar">
     <h2>Abrigo São Francisco</h2>
     <ul>
-        <li><a href="ADMpage.html">Cadastro de Morador</a></li>
+        <li><a href="ADMpage.php">Cadastro de Morador</a></li>
         <li><a href="moradores_do_abrigo.php">Moradores</a></li>
         <li><a href="#">Quem Somos</a></li>
         <li><a href="#">Doações</a></li>

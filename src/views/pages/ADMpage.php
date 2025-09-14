@@ -1,3 +1,49 @@
+<?php
+// Configurações do banco de dados
+$servername = "localhost";
+$username   = "root";
+$password   = "";
+$dbname     = "abrigo_sao_francisco_de_assis";
+
+// Cria a conexão
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Erro de conexão: " . $conn->connect_error);
+}
+
+//consuta todos idosos
+$sql= " SELECT * FROM idosos ORDER BY criado_em DESC";
+$result = $conn->query($sql);
+
+// array $idoso
+
+$idoso = [];
+if  ($result->num_rows > 0) {
+  while($row= $result->fetch_assoc()){
+    $idoso[] = $row;
+  }
+}
+
+//logica para excuir 
+
+if (isset($_GET['delete_id'])) {
+    $delete_id = $_GET['delete_id'];
+    $stmt = $conn->prepare("DELETE FROM idosos WHERE id = ?");
+    $stmt->bind_param("i", $delete_id);
+    if ($stmt->execute()) {
+        header("Location: ADMpage.php?success=Perfil excluído com sucesso.");
+    } else {
+        header("Location: ADMpage.php?error=Erro ao excluir Perfil.");
+    }
+    exit();
+}
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -242,42 +288,60 @@
           </div>
 
       
+<!-- Perfis Cadastrados -->
+<div id="perfis" class="card" style="grid-column:span 4">
+  <h2>Perfis Cadastrados</h2>
+  <p class="muted">Visualize, edite ou exclua registros existentes.</p>
+  <table aria-label="Lista de perfis">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Status</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php if (!empty($idoso)): ?>
+        <?php foreach ($idoso as $row): ?>
+          <tr>
+            <td><?= htmlspecialchars($row['nome']) ?></td>
+            <td><?= htmlspecialchars($row['idade']) ?></td>
+            <td><?= 'Ativo' ?></td>
+            <td>
+              <button class="btn" onclick="abrirModal(
+                  '<?= htmlspecialchars($row['nome']) ?>',
+                  '<?= $row['idade'] ?>',
+                  '<?= htmlspecialchars($row['cidade_de_origem']) ?>',
+                  'Ativo',
+                  '<?= htmlspecialchars($row['bio']) ?>',
+                  '<?= htmlspecialchars($row['foto_perfil']) ?>',
+                  '<?= htmlspecialchars(json_encode($row['fotos_diarias'])) ?>',
+                  '<?= htmlspecialchars(json_encode($row['videos'])) ?>'
+              )">Ver</button>
+              <a class="btn" href="editar_perfil_idoso.php?id=<?= $row['id'] ?>">Editar</a>
 
-      <!-- Perfis Cadastrados -->
-      <div id="perfis" class="card" style="grid-column:span 4">
-        <h2>Perfis Cadastrados</h2>
-        <p class="muted">Visualize, edite ou exclua registros existentes.</p>
-        <table aria-label="Lista de perfis">
-          <thead>
-            <tr><th>Residente</th><th>Idade</th><th>Status</th><th>Ações</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Maria das Dores</td><td>82</td><td><span class="badge ok">Ativo</span></td>
-              <td>
-                <button class="btn" title="Visualizar">Ver</button>
-                <button class="btn" title="Editar">Editar</button>
-                <button class="btn danger" title="Excluir">Excluir</button>
-              </td>
-            </tr>
-            <tr>
-              <td>José Antônio</td><td>76</td><td><span class="badge ok">Ativo</span></td>
-              <td>
-                <button class="btn">Ver</button>
-                <button class="btn">Editar</button>
-                <button class="btn danger">Excluir</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Conceição Silva</td><td>88</td><td><span class="badge warn">Revisar</span></td>
-              <td>
-                <button class="btn">Ver</button>
-                <button class="btn">Editar</button>
-                <button class="btn danger">Excluir</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              <a class="btn danger" href="ADMpage.php?delete_id=<?php echo $row['id']; ?>" onclick="return confirm('Tem certeza que deseja excluir este Perfil?');">
+          <i class="bi bi-trash-fill"></i> Excluir
+              
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <tr>
+          <td colspan="4" style="text-align:center; color:var(--muted)">Nenhum idoso cadastrado ainda.</td>
+        </tr>
+      <?php endif; ?>
+    </tbody>
+  </table>
+
+  <div class="actions-row" style="margin-top:10px">
+    <a href="moradores_do_abrigo.php" class="btn">Ver todos</a>
+    <button class="btn">Exportar CSV</button>
+  </div>
+</div>
+
+        
         <div class="actions-row" style="margin-top:10px">
           <a href="moradores_do_abrigo.php" class="btn">Ver todos</a>
           <button class="btn">Exportar CSV</button>
@@ -340,6 +404,8 @@
         </table>
       </div>
 
+      
+
       <!-- Transparência Pública -->
       <div id="transparencia" class="card" style="grid-column:span 8">
         <h2>Transparência ao Público</h2>
@@ -400,5 +466,39 @@
       </div>
     </section>
   </main>
+        <!-- scripts e div para o botão "ver" -->
+    <div id="modalDetalhes" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center;">
+      <div style="background:var(--panel); padding:20px; border-radius:var(--radius); max-width:500px; width:90%; position:relative;">
+        <button onclick="fecharModal()" style="position:absolute; top:10px; right:10px;">✖</button>
+        <h3 id="modalNome"></h3>
+        <p><strong>Idade:</strong> <span id="modalIdade"></span></p>
+        <p><strong>Cidade de origem:</strong> <span id="modalCidade"></span></p>
+        <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+        <p><strong>Bio:</strong> <span id="modalBio"></span></p>
+        <img id="modalFoto" src="" alt="" style="width:100%; max-height:200px; object-fit:cover; margin-top:10px; border-radius:12px">
+      </div>
+    </div>
+
+  <script>
+      function abrirModal(nome, idade, cidade, status, bio, foto) {
+        document.getElementById('modalNome').innerText = nome;
+        document.getElementById('modalIdade').innerText = idade;
+        document.getElementById('modalCidade').innerText = cidade;
+        document.getElementById('modalStatus').innerText = status;
+        document.getElementById('modalBio').innerText = bio;
+        document.getElementById('modalFoto').src = foto ? foto : '';
+        document.getElementById('modalDetalhes').style.display = 'flex';
+      }
+
+      function fecharModal() {
+        document.getElementById('modalDetalhes').style.display = 'none';
+      }
+</script>
+
+
+</script>
+
+
 </body>
 </html>
+
