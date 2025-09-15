@@ -1,4 +1,4 @@
-//excuta primeiro linha 3 no php My ADMIn depôs da linha 5 ate a 16.
+-- excuta primeiro linha 3 no php My ADMIn depôs da linha 5 ate a 16.
 
 CREATE TABLE `idosos` (
   `id` int(11) NOT NULL,
@@ -14,11 +14,11 @@ CREATE TABLE `idosos` (
   `status` varchar(20) DEFAULT 'ativo'
 );
 
-//caso não funcione é so ir por partes. primeiro cria o banco
+-- //caso não funcione é so ir por partes. primeiro cria o banco
 
 CREATE DATABASE abrigo_sao_francisco_de_assis;
 
-//depôs a seguintes tabelas 
+-- //depôs a seguintes tabelas 
 
 CREATE TABLE idosos (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -32,6 +32,6 @@ CREATE TABLE idosos (
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-// e logo apôs de ter execultado é so fazer
+-- // e logo apôs de ter execultado é so fazer
 
 ALTER TABLE idosos ADD COLUMN likes INT DEFAULT 0;
