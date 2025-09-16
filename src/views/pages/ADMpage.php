@@ -39,7 +39,23 @@ if (isset($_GET['delete_id'])) {
     exit();
 }
 
+//fucionalidade de informaçoes de quantos tem e ativo
 
+// Total de idosos
+$sqlTotal = "SELECT COUNT(*) AS total FROM idosos";
+$resTotal = $conn->query($sqlTotal);
+$totalIdosos = $resTotal->fetch_assoc()['total'] ?? 0;
+
+// Perfis ativos
+$sqlAtivos = "SELECT COUNT(*) AS ativos FROM idosos WHERE status = 'ativo'";
+$resAtivos = $conn->query($sqlAtivos);
+$totalAtivos = $resAtivos->fetch_assoc()['ativos'] ?? 0;
+
+// Eventos do mês → (aqui deixo fixo porque não tem tabela)
+$totalEventosMes = 9;
+
+// Documentos públicos → (idem)
+$totalDocumentos = 23;
 
 ?>
 
@@ -212,8 +228,8 @@ if (isset($_GET['delete_id'])) {
       <!-- KPIs -->
       <div class="card" style="grid-column:span 12">
         <div class="kpis" role="group" aria-label="Indicadores">
-          <div class="kpi"><div class="muted">Idosos cadastrados</div><strong>128</strong></div>
-          <div class="kpi"><div class="muted">Perfis ativos</div><strong>124</strong></div>
+          <div class="kpi"><div class="muted">Idosos cadastrados</div><strong><?php echo $totalIdosos;?></strong></div>
+          <div class="kpi"><div class="muted">Perfis ativos</div><strong><?php echo $totalAtivos?></strong></div>
           <div class="kpi"><div class="muted">Eventos no mês</div><strong>9</strong></div>
           <div class="kpi"><div class="muted">Documentos públicos</div><strong>23</strong></div>
         </div>
@@ -307,13 +323,26 @@ if (isset($_GET['delete_id'])) {
           <tr>
             <td><?= htmlspecialchars($row['nome']) ?></td>
             <td><?= htmlspecialchars($row['idade']) ?></td>
-            <td><?= 'Ativo' ?></td>
+                  <td>
+              <?php
+               $status = $row['status'] ?? 'inativo';
+              $classe = match($status) {
+                  'ativo' => 'ok',
+                  'revisar' => 'warn',
+                  'inativo' => 'danger',
+                  default => 'muted'
+              };
+              ?>
+              <span class="badge <?= $classe ?>"><?= ucfirst($status) ?></span>
+
+            </td>
+            <td>
             <td>
               <button class="btn" onclick="abrirModal(
                   '<?= htmlspecialchars($row['nome']) ?>',
                   '<?= $row['idade'] ?>',
                   '<?= htmlspecialchars($row['cidade_de_origem']) ?>',
-                  'Ativo',
+                  '<?= htmlspecialchars($row['status']) ?>',
                   '<?= htmlspecialchars($row['bio']) ?>',
                   '<?= htmlspecialchars($row['foto_perfil']) ?>',
                   '<?= htmlspecialchars(json_encode($row['fotos_diarias'])) ?>',
@@ -341,12 +370,6 @@ if (isset($_GET['delete_id'])) {
   </div>
 </div>
 
-        
-        <div class="actions-row" style="margin-top:10px">
-          <a href="moradores_do_abrigo.php" class="btn">Ver todos</a>
-          <button class="btn">Exportar CSV</button>
-        </div>
-      </div>
 
       <!-- Comunicados -->
       <div id="comunicados" class="card" style="grid-column:span 6">

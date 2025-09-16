@@ -1,4 +1,5 @@
 -- excuta primeiro linha 3 no php My ADMIn depôs da linha 5 ate a 16.
+CREATE DATABASE abrigo_sao_francisco_de_assis;
 
 CREATE TABLE `idosos` (
   `id` int(11) NOT NULL,
@@ -11,27 +12,5 @@ CREATE TABLE `idosos` (
   `videos` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`videos`)),
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
   `likes` int(11) DEFAULT 0,
-  `status` varchar(20) DEFAULT 'ativo'
-);
-
--- //caso não funcione é so ir por partes. primeiro cria o banco
-
-CREATE DATABASE abrigo_sao_francisco_de_assis;
-
--- //depôs a seguintes tabelas 
-
-CREATE TABLE idosos (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
-    idade INT NOT NULL,
-    cidade_de_origem VARCHAR(255),
-    bio TEXT,
-    foto_perfil VARCHAR(255),
-    fotos_diarias JSON,
-    videos JSON,
-    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- // e logo apôs de ter execultado é so fazer
-
-ALTER TABLE idosos ADD COLUMN likes INT DEFAULT 0;
+  `status` enum('ativo','inativo','revisar') DEFAULT 'ativo'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
