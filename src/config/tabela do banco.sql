@@ -2,7 +2,7 @@
 CREATE DATABASE abrigo_sao_francisco_de_assis;
 
 CREATE TABLE `idosos` (
-  `id` int(11) NOT NULL,
+  `id` int(11) AUTO_INCREMENT PRIMARY KEY,
   `nome` varchar(255) NOT NULL,
   `idade` int(11) NOT NULL,
   `cidade_de_origem` varchar(255) DEFAULT NULL,
