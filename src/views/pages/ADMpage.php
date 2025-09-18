@@ -372,60 +372,77 @@ $totalDocumentos = 23;
 
 
       <!-- Comunicados -->
-      <div id="comunicados" class="card" style="grid-column:span 6">
-        <h2>Comunicados / Alertas públicos</h2>
-        <p class="muted">Mensagens exibidas ao acessar o site.</p>
-        <label for="alerta">Mensagem</label>
-        <textarea id="alerta" placeholder="Ex.: A visitação estará suspensa no dia 12/10 para manutenção." ></textarea>
-        <div class="actions-row" style="margin-top:10px">
-          <button class="btn primary">Publicar</button>
-          <button class="btn warn">Agendar</button>
+        <div id="comunicados" class="card" style="grid-column:span 6">
+          <h2>Comunicados / Alertas públicos</h2>
+          <p class="muted">Mensagens exibidas ao acessar o site.</p>
+
+          <form method="POST" action="../../controllers/comunicados.php">
+            <label for="alerta">Mensagem</label>
+            <textarea id="alerta" name="mensagem" placeholder="Ex.: A visitação estará suspensa no dia 12/10 para manutenção." required></textarea>
+
+            <div class="actions-row" style="margin-top:10px">
+              <button type="submit" name="acao" value="publicar" class="btn primary">Publicar</button>
+              <button type="submit" name="acao" value="agendar" class="btn warn">Agendar</button>
+            </div>
+          </form>
+
+          <div class="banner" style="margin-top:12px">
+            <strong>Comunicados publicados:</strong>
+            <div class="muted">
+              <?php include "../../controllers/listar_comunicados.php"; ?>
+            </div>
+          </div>
         </div>
-        <div class="banner" style="margin-top:12px">
-          <strong>Pré-visualização:</strong>
-          <div class="muted">Nenhuma mensagem publicada ainda.</div>
-        </div>
-      </div>
 
       <!-- Eventos / Missas -->
-      <div id="eventos" class="card" style="grid-column:span 6">
-        <h2>Eventos, Festividades e Missas</h2>
-        <p class="muted">Gerencie celebrações, formações de cuidadores e horários da capela.</p>
-        <div class="row">
-          <div style="grid-column:span 5">
-            <label for="tituloEvt">Título do evento</label>
-            <input id="tituloEvt" type="text" placeholder="Ex.: Missa Nossa Senhora Aparecida" />
-          </div>
-          <div style="grid-column:span 3">
-            <label for="dataEvt">Data</label>
-            <input id="dataEvt" type="date" />
-          </div>
-          <div style="grid-column:span 2">
-            <label for="horaEvt">Hora</label>
-            <input id="horaEvt" type="text" placeholder="Ex.: 18:30" />
-          </div>
-          <div style="grid-column:span 2">
-            <label for="tipoEvt">Tipo</label>
-            <select id="tipoEvt">
-              <option>Missas</option>
-              <option>Festividades</option>
-              <option>Formações</option>
-              <option>Outros</option>
-            </select>
-          </div>
+        <div id="eventos" class="card" style="grid-column:span 6">
+          <h2>Eventos, Festividades e Missas</h2>
+          <p class="muted">Gerencie celebrações, formações de cuidadores e horários da capela.</p>
+
+          <form method="POST" action="../../controllers/eventos.php">
+            <div class="row">
+              <div style="grid-column:span 5">
+                <label for="tituloEvt">Título do evento</label>
+                <input id="tituloEvt" name="titulo" type="text" placeholder="Ex.: Missa Nossa Senhora Aparecida" required />
+              </div>
+              <div style="grid-column:span 3">
+                <label for="dataEvt">Data</label>
+                <input id="dataEvt" name="data" type="date" required />
+              </div>
+              <div style="grid-column:span 2">
+                <label for="horaEvt">Hora</label>
+                <input id="horaEvt" name="hora" type="time" required />
+              </div>
+              <div style="grid-column:span 2">
+                <label for="tipoEvt">Tipo</label>
+                <select id="tipoEvt" name="tipo" required>
+                  <option>Missas</option>
+                  <option>Festividades</option>
+                  <option>Formações</option>
+                  <option>Outros</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="actions-row" style="margin-top:10px">
+              <button type="submit" name="acao" value="adicionar" class="btn primary">Adicionar ao calendário</button>
+              <a href="../../controllers/exportar.php?tipo=ical" class="btn">Exportar iCal</a>
+              <a href="../../controllers/exportar.php?tipo=csv" class="btn">Exportar CSV</a>
+            </div>
+
+
+          </form>
+
+          <table style="margin-top:12px">
+            <thead>
+              <tr><th>Data</th><th>Evento</th><th>Tipo</th><th>Ações</th></tr>
+            </thead>
+            <tbody>
+              <?php include "../../controllers/listar_eventos.php"; ?>
+            </tbody>
+          </table>
         </div>
-        <div class="actions-row" style="margin-top:10px">
-          <button class="btn primary">Adicionar ao calendário</button>
-          <button class="btn">Exportar iCal</button>
-        </div>
-        <table style="margin-top:12px">
-          <thead><tr><th>Data</th><th>Evento</th><th>Tipo</th><th>Ações</th></tr></thead>
-          <tbody>
-            <tr><td>12/10/2025 18:30</td><td>Missa de Nossa Senhora Aparecida</td><td>Missas</td><td><button class="btn">Editar</button> <button class="btn danger">Remover</button></td></tr>
-            <tr><td>25/10/2025 09:00</td><td>Formação de Cuidadores (Cognitiva)</td><td>Formações</td><td><button class="btn">Editar</button> <button class="btn danger">Remover</button></td></tr>
-          </tbody>
-        </table>
-      </div>
+
 
       
 
