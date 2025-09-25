@@ -39,6 +39,73 @@ if (isset($_GET['delete_id'])) {
     exit();
 }
 
+    //uploaud de arquivos: logica
+
+if(isset($_POST['enviar'])) {
+    $tipoDoc = $_POST['tipoDoc'] ?? '';
+    $descDoc = $_POST['descDoc'] ?? '';
+
+    // Diretório de uploads
+    $pasta = "uploads/";
+    if(!is_dir($pasta)) { 
+        mkdir($pasta, 0777, true); 
+    }
+
+    if(isset($_FILES['arquivo']) && $_FILES['arquivo']['error'] === UPLOAD_ERR_OK){
+        $arquivo = $_FILES['arquivo'];
+        $nomeOriginal = $arquivo['name'];
+        $tipo = $arquivo['type'];
+        $tamanho = $arquivo['size'];
+        $tmp = $arquivo['tmp_name'];
+
+    // Limite de tamanho 10MB
+        $tamanhoMax = 10 * 1024 * 1024; // 10 MB
+        if($tamanho > $tamanhoMax){
+            echo "<p style='color:red'>Erro: Arquivo muito grande. Máximo permitido 10MB.</p>";
+            exit;
+        }
+
+    // Extensões permitidas
+        $extensoesPermitidas = ['pdf','xlsx','csv'];
+        $ext = strtolower(pathinfo($nomeOriginal, PATHINFO_EXTENSION));
+        if(!in_array($ext, $extensoesPermitidas)){
+            echo "<p style='color:red'>Erro: Tipo de arquivo não permitido. Apenas PDF, XLSX e CSV.</p>";
+            exit;
+        }
+
+    // Nome único para evitar sobrescrever
+        $caminho = $pasta . uniqid() . "_" . basename($nomeOriginal);
+        if(move_uploaded_file($tmp, $caminho)){
+
+    // Inserir no banco com prepare para segurança
+            $stmt = $conn->prepare("INSERT INTO arquivos (titulo, tipo_doc, caminho, tipo, tamanho, status) VALUES (?, ?, ?, ?, ?, 'publicado')");
+            $stmt->bind_param("ssssi", $descDoc, $tipoDoc, $caminho, $tipo, $tamanho);
+            if($stmt->execute()){
+                echo "<p style='color:green'>Arquivo enviado com sucesso!</p>";
+            } else {
+                echo "<p style='color:red'>Erro ao salvar no banco de dados.</p>";
+            }
+            $stmt->close();
+        } else {
+            echo "<p style='color:red'>Erro ao mover o arquivo.</p>";
+        }
+    } else {
+        echo "<p style='color:red'>Nenhum arquivo enviado ou ocorreu um erro no upload.</p>";
+    }
+}
+
+// Excluir
+  if (isset($_GET['del'])) {
+      $id = (int) $_GET['del'];
+      $conn->query("DELETE FROM arquivos WHERE id=$id");
+      header("Location: ADMpage.php");
+      exit;
+}
+
+$result = $conn->query("SELECT * FROM arquivos ORDER BY data_upload DESC");
+
+
+
 //fucionalidade de informaçoes de quantos tem e ativo
 
 // Total de idosos
@@ -51,11 +118,16 @@ $sqlAtivos = "SELECT COUNT(*) AS ativos FROM idosos WHERE status = 'ativo'";
 $resAtivos = $conn->query($sqlAtivos);
 $totalAtivos = $resAtivos->fetch_assoc()['ativos'] ?? 0;
 
-// Eventos do mês → (aqui deixo fixo porque não tem tabela)
-$totalEventosMes = 9;
+// Eventos do mês 
+$EventosMes = "SELECT COUNT(*) AS total FROM eventos";
+$resEventosMes = $conn->query($EventosMes);
+$totalEventosMes = $resEventosMes ? $resEventosMes->fetch_assoc()['total'] : 0;
 
-// Documentos públicos → (idem)
-$totalDocumentos = 23;
+
+// Documentos públicos
+$sqlArquivos = "SELECT COUNT(*) AS total FROM arquivos WHERE status='Publicado'";
+$resultArquivos = $conn->query($sqlArquivos);
+$totalArquivos = $resultArquivos ? $resultArquivos->fetch_assoc()['total'] : 0;
 
 ?>
 
@@ -229,9 +301,9 @@ $totalDocumentos = 23;
       <div class="card" style="grid-column:span 12">
         <div class="kpis" role="group" aria-label="Indicadores">
           <div class="kpi"><div class="muted">Idosos cadastrados</div><strong><?php echo $totalIdosos;?></strong></div>
-          <div class="kpi"><div class="muted">Perfis ativos</div><strong><?php echo $totalAtivos?></strong></div>
-          <div class="kpi"><div class="muted">Eventos no mês</div><strong>9</strong></div>
-          <div class="kpi"><div class="muted">Documentos públicos</div><strong>23</strong></div>
+          <div class="kpi"><div class="muted">Perfis ativos</div><strong><?php echo $totalAtivos; ?></strong></div>
+          <div class="kpi"><div class="muted">Eventos no mês</div><strong><?php echo $totalEventosMes; ?></strong></div>
+          <div class="kpi"><div class="muted">Documentos públicos</div><strong><?php echo $totalArquivos; ?></strong></div>
         </div>
       </div>
 
@@ -447,41 +519,74 @@ $totalDocumentos = 23;
       
 
       <!-- Transparência Pública -->
-      <div id="transparencia" class="card" style="grid-column:span 8">
+    <div id="transparencia" class="card" style="grid-column:span 8">
         <h2>Transparência ao Público</h2>
         <p class="muted">Publique doações, relatórios financeiros e projetos em andamento.</p>
-        <div class="row">
-          <div style="grid-column:span 4">
-            <label for="tipoDoc">Tipo de documento</label>
-            <select id="tipoDoc">
-              <option>Doações recebidas</option>
-              <option>Relatório financeiro</option>
-              <option>Prestação de contas</option>
-              <option>Projetos</option>
-            </select>
-          </div>
-          <div style="grid-column:span 8">
-            <label for="descDoc">Descrição</label>
-            <input id="descDoc" type="text" placeholder="Ex.: Relatório Financeiro – 3º Trimestre/2025" />
-          </div>
-          <div style="grid-column:span 12">
-            <label>Arquivo</label>
-            <div class="pill">Solte aqui o PDF/Planilha ou clique para enviar</div>
-            <div class="hint">Formatos aceitos: PDF, XLSX, CSV. Tamanho máximo sugerido: 10MB.</div>
-          </div>
-        </div>
-        <div class="actions-row" style="margin-top:10px">
-          <button class="btn primary">Publicar documento</button>
-          <button class="btn">Criar link público</button>
-        </div>
-        <table style="margin-top:12px">
-          <thead><tr><th>Data</th><th>Título</th><th>Tipo</th><th>Link</th><th>Ações</th></tr></thead>
+        
+        <form action="ADMpage.php" method="post" enctype="multipart/form-data">
+            <div class="row">
+              <div style="grid-column:span 4">
+                <label for="tipoDoc">Tipo de documento</label>
+                <select name="tipoDoc" id="tipoDoc">
+                  <option>Doações recebidas</option>
+                  <option>Relatório financeiro</option>
+                  <option>Prestação de contas</option>
+                  <option>Projetos</option>
+                </select>
+              </div>
+              <div style="grid-column:span 8">
+                <label for="descDoc">Descrição</label>
+                <input name="descDoc" id="descDoc" type="text" placeholder="Ex.: Relatório Financeiro – 3º Trimestre/2025" required />
+              </div>
+              <div style="grid-column:span 12">
+                <label>Arquivo</label>
+                <input type="file" name="arquivo" required>
+                <div class="hint">Formatos aceitos: PDF, XLSX, CSV. Tamanho máximo sugerido: 10MB.</div>
+              </div>
+            </div>
+            <div class="actions-row" style="margin-top:10px">
+              <button class="btn primary" type="submit" name="enviar">Publicar documento</button>
+            </div>
+        </form>
+
+        <table style="margin-top:12px; width:100%">
+          <thead>
+            <tr><th>Data</th><th>Título</th><th>Tipo</th><th>Status</th><th>Ações</th></tr>
+          </thead>
           <tbody>
-            <tr><td>05/09/2025</td><td>Relatório Financeiro – 2º Tri/2025</td><td>Relatório financeiro</td><td><span class="badge ok">Publicado</span></td><td><button class="btn">Ver</button> <button class="btn">Editar</button> <button class="btn danger">Excluir</button></td></tr>
-            <tr><td>18/08/2025</td><td>Doações Recebidas – Agosto/2025</td><td>Doações</td><td><span class="badge ok">Publicado</span></td><td><button class="btn">Ver</button> <button class="btn">Editar</button> <button class="btn danger">Excluir</button></td></tr>
-          </tbody>
+            <?php
+            $conn = new mysqli("localhost", "root", "", "abrigo_sao_francisco_de_assis");
+            if ($conn->connect_error) {
+                die("Erro de conexão: " . $conn->connect_error);
+            }
+
+            $sql = "SELECT * FROM arquivos ORDER BY data_upload DESC";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . date("d/m/Y", strtotime($row['data_upload'])) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['titulo']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['tipo_doc']) . "</td>";
+                    echo "<td><span class='badge " . ($row['status'] == 'publicado' ? 'ok' : 'warn') . "'>" . ucfirst($row['status']) . "</span></td>";
+                    echo "<td>
+                            <a href='" . htmlspecialchars($row['caminho']) . "' target='_blank' class='btn'>Ver</a>
+                            <a href='ADMpage.php?del=" . $row['id'] . "' class='btn danger' onclick=\"return confirm('Excluir este documento?')\">Excluir</a>
+                          </td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='5' style='text-align:center; color:var(--muted)'>Nenhum documento publicado.</td></tr>";
+            }
+
+            $conn->close();
+            ?>
+            </tbody>
         </table>
-      </div>
+    </div>
+
+
 
       <!-- Configurações / Acessibilidade -->
       <div id="config" class="card" style="grid-column:span 4">
@@ -541,4 +646,3 @@ $totalDocumentos = 23;
 
 </body>
 </html>
-
