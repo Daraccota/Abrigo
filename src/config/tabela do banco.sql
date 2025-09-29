@@ -30,12 +30,13 @@ CREATE TABLE eventos (
     tipo ENUM('Missas','Festividades','Formações','Outros') NOT NULL
 );
 
-CREATE TABLE arquivos ( 
-  id INT AUTO_INCREMENT PRIMARY KEY, 
-  tipo_documento VARCHAR(100) NOT NULL, 
-  descricao VARCHAR(255) NOT NULL, 
-  nome_arquivo VARCHAR(255) NOT NULL, 
-  caminho VARCHAR(255) NOT NULL, 
-  status ENUM('Publicado', 'Arquivado') DEFAULT 'Publicado',
-  data_upload TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+CREATE TABLE `arquivos` (
+  `id` int(11) NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `tipo_doc` varchar(100) NOT NULL,
+  `caminho` varchar(255) NOT NULL,
+  `tipo` varchar(50) NOT NULL,
+  `tamanho` bigint(20) NOT NULL,
+  `status` enum('publicado','arquivado') DEFAULT 'publicado',
+  `data_upload` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
