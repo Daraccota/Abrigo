@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="assets/css/pag1.css">
   <title>Abrigo São Francisco de Assis</title>
 
   <!-- Fontes usadas nas duas páginas -->
@@ -256,12 +257,479 @@
   .historia-section .cta button:hover { background-color:#5b4539; }
 
   /* fim CSS historia */
+
+  /*BLOCO 3*/
+    .body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #d9cfc3;
+      color: #3a3a3a;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.6rem;
+      color: #2c2c2c;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    h1::after {
+      content: "";
+      display: block;
+      width: 180px;
+      height: 1px;
+      background-color: #3a3a3a;
+      margin: 10px auto 0;
+    }
+
+    p {
+      max-width: 760px;
+      margin: 0 auto 45px;
+      line-height: 1.6;
+      color: #5a5a5a;
+      font-size: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 300px);
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #fff;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .grid-item {
+      padding: 35px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+    }
+
+    .grid-item i {
+      font-size: 35px;
+      color: #3a3a3a;
+      margin-bottom: 10px;
+    }
+
+    .grid-item h3 {
+      font-size: 1.1rem;
+      margin: 8px 0 8px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .grid-item p {
+      font-size: 0.9rem;
+      color: #555;
+      margin: 0;
+      max-width: 230px;
+      line-height: 1.5;
+    }
+
+    .alimentacao {
+      background-color: #f0e4de;
+    }
+
+    .rodape {
+      margin-top: 45px;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .btn {
+      margin-top: 25px;
+      background-color: #4b4b4b;
+      color: #fff;
+      padding: 14px 30px;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #333;
+    }
+
+    @media (max-width: 1000px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .btn-relatorios {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: #5a554f;
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 10px 22px; /* 🔹 reduzido */
+      border-radius: 50px;
+      text-decoration: none;
+      border: 2px solid #ffffff;
+      transition: all 0.3s ease;
+      font-size: 0.85rem; /* levemente menor */
+      width: fit-content; /* 🔹 se ajusta ao texto */
+      max-width: 300px;   /* 🔹 evita ficar muito largo */
+    }
+
+    .btn-relatorios i {
+      font-size: 0.95rem;
+      transform: rotate(45deg);
+    }
+
+    .btn-relatorios:hover {
+      background-color: #6a655f;
+      transform: translateY(-2px);
+    }
+
+    /*BLOCO 4*/
+    .body2{
+      box-sizing: border-box;
+    }
+
+    .body2 {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .body2 {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* --- Seção de Doação --- */
+    .doacao {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 20px 40px;
+      position: relative;
+    }
+
+    .titulo-secao {
+      font-family: 'Dancing Script', cursive;
+      text-align: center;
+      font-size: 2.5rem;
+      color: #2b2b2b;
+      margin-bottom: 50px;
+    }
+
+    .conteudo-doacao {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      position: relative;
+    }
+
+    .texto-doacao {
+      flex: 1 1 45%;
+      font-size: 1.3rem;
+      line-height: 1.9;
+      color: #444;
+      margin-top: 5%;
+      margin-left: 0; /* 🔧 removido -10% que causava scroll */
+      max-width: 100%;
+    }
+
+    .cartoes-doacao {
+      flex: 1 1 45%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card {
+      background: #fff;
+      width: 100%;
+      max-width: 500px;
+      height: 350px;
+      margin: 0 auto;
+      padding: 30px 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border: 2px solid #000000;
+      text-align: center;
+      position: relative;
+      border-radius: 16px;
+    }
+
+    #c1 {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    #c2 {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    .card h3 {
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 5px;
+      font-size: 1rem;
+    }
+
+    .card p {
+      font-size: 0.85rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .botao {
+      background-color: #39b14a;
+      color: #fff;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .botao:hover {
+      background-color: #2f9a3e;
+    }
+
+    .icones-idosos {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .icones-idosos img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: #f2f2f2;
+    }
+
+    .icone-casa {
+      position: relative;
+      display: inline-block;
+      font-size: 2.8rem;
+      color: #000;
+      margin: 10px 0 15px;
+    }
+
+    .icone-coracao {
+      position: absolute;
+      font-size: 1.2rem;
+      color: #2ecc71;
+      top: 18px;
+      left: 22px;
+    }
+
+    /* --- Notícias --- */
+    .not {
+      border: 2px solid black;
+      margin: 90px auto;
+      padding-left: 40px;
+      padding-right: 40px;
+      border-radius: 16px;
+      max-width: 1000px;
+      overflow: hidden;
+    }
+
+    .not2 {
+      border: 2px solid rgb(181, 178, 178);
+      border-radius: 16px;
+      padding: 50px 30px;
+    }
+
+    .noticias {
+      width: 100%;
+      max-width: 1000px;
+      margin: 90px auto;
+      padding: 0 20px 60px;
+      position: relative;
+    }
+
+    .noticias h2 {
+      font-family: 'Dancing Script', cursive;
+      text-align: center;
+      font-size: 2.5rem;
+      color: #2b2b2b;
+      margin-bottom: 40px;
+    }
+
+    .lista-noticias {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .noticia {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to right, #f7f1e9, #fff);
+      border-radius: 12px;
+      padding: 18px 25px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e7e2db;
+    }
+
+    .noticia .data {
+      font-size: 0.85rem;
+      color: #999;
+      margin-right: 20px;
+      min-width: 90px;
+    }
+
+    .noticia .conteudo {
+      flex: 1;
+    }
+
+    .noticia h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0 0 4px;
+      color: #2c2c2c;
+    }
+
+    .noticia p {
+      font-size: 0.9rem;
+      color: #666;
+      margin: 0;
+    }
+
+    .noticia .icone i {
+      color: #c8bba9;
+      font-size: 1.1rem;
+    }
+
+    .linha-decorativa {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 30%;
+      pointer-events: none;
+      opacity: 0.4;
+      overflow: hidden;
+    }
+
+    .linha-decorativa svg path{
+      stroke: #cfc8bf;
+      stroke-width: 1.5;
+      fill: none;
+    }
+
+    /* --- RESPONSIVIDADE --- */
+
+    /* Tablets */
+    @media (max-width: 992px) {
+      .conteudo-doacao {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .texto-doacao {
+        margin: 0 auto;
+        text-align: center;
+        font-size: 1.2rem;
+        line-height: 1.8;
+      }
+
+      .card {
+        width: 85%;
+        max-width: 420px;
+        height: auto;
+      }
+
+      .not {
+        margin: 60px 20px;
+      }
+    }
+
+    /* Celulares */
+    @media (max-width: 600px) {
+      .titulo-secao {
+        font-size: 2rem;
+      }
+
+      .texto-doacao {
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .card {
+        width: 90%;
+        height: auto;
+        padding: 25px 20px;
+      }
+
+      .not {
+        margin: 40px 10px;
+      }
+
+      .not2 {
+        padding: 30px 20px;
+      }
+
+      .noticia {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .noticia h4 {
+        font-size: 1.1rem;
+      }
+
+      .noticia p {
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
 
   <!-- ============================
-       PÁGINA PRINCIPAL (conteúdo original)
+       BLOCO-1 PÁGINA PRINCIPAL 
        ============================ -->
   <header class="main-header">
     <div class="container">
@@ -374,8 +842,8 @@
   </section>
 
   <!-- ============================
-       AQUI VAI A SEÇÃO "HISTÓRIAS QUE INSPIRAM" (INCLUÍ A PÁGINA INTEIRA AQUI,
-       preservando exatamente o conteúdo dela, mas escopando estilos e scripts)
+       BLOCO-2 AQUI VAI A SEÇÃO "HISTÓRIAS QUE INSPIRAM" (INCLUÍ A PÁGINA INTEIRA AQUI,
+       preservando exatamente o conteúdo dela)
        ============================ -->
   <section class="historia-section" aria-label="Histórias que Inspiram">
     <div class="container">
@@ -470,6 +938,156 @@
         <button>Perfil dos Idosos</button>
       </div>
     </div>
+  </section>
+
+    <!-- ============================
+       BLOCO-3 AQUI VAI A SEÇÃO "Transparência em Primeiro Lugar" (INCLUÍ A PÁGINA INTEIRA AQUI,
+       preservando exatamente o conteúdo dela)
+       ============================ -->
+<section class="body">
+  <h1>Transparência em Primeiro Lugar</h1>
+  <p>No nosso abrigo, cada recurso é utilizado com responsabilidade e clareza.<br>
+  As doações recebidas e 60% da contribuição mensal dos idosos são totalmente revertidas para custear alimentação, cuidados, infraestrutura e lazer.</p>
+
+  <div class="grid">
+    <!-- Linha 1 -->
+    <img src="https://images.unsplash.com/photo-1728271021773-65d366c1a6d2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1476" alt="Grupo de idosos se divertindo">
+    
+    <div class="grid-item">
+      <i class="fa-solid fa-chart-line"></i>
+      <h3>Finanças</h3>
+      <p>Controle rigoroso dos recursos e publicação de extratos mensais e anuais, com total transparência.</p>
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1540778339538-067eae485e9f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=626" alt="Corredor acessível com cadeira de rodas">
+
+    <div class="grid-item">
+      <i class="fa-solid fa-house-chimney"></i>
+      <h3>Infraestrutura</h3>
+      <p>Parte do valor é investida em manutenção, melhorias e adaptações de acessibilidade.</p>
+    </div>
+
+    <!-- Linha 2 -->
+    <div class="grid-item alimentacao">
+      <i class="fa-solid fa-utensils"></i>
+      <h3>Alimentação</h3>
+      <p>Garantia de refeições balanceadas e nutritivas preparadas com carinho todos os dias.</p>
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1587556930799-8dca6fad6d41?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Idosa sendo servida com refeição saudável">
+
+    <div class="grid-item">
+      <i class="fa-solid fa-hand-holding-medical"></i>
+      <h3>Cuidados</h3>
+      <p>Investimento constante em profissionais de saúde, medicamentos e atividades de bem-estar.</p>
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2078" alt="Atividade física para idosos">
+  </div>
+
+  <div class="rodape">
+    <p>Tudo é registrado e pode ser consultado por qualquer pessoa.</p>
+    <div class="button-container">
+        <a href="#" class="btn-relatorios">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            ACESSE RELATÓRIOS COMPLETOS
+        </a>
+    </div>
+  </div>
+  </section>
+
+      <!-- ============================
+       BLOCO-4 AQUI VAI A SEÇÃO "Transparência em Primeiro Lugar" (INCLUÍ A PÁGINA INTEIRA AQUI,
+       preservando exatamente o conteúdo dela)
+       ============================ -->
+
+  <section class="body2">
+
+    <section class="doacao">
+      <h2 class="titulo-secao">Seja parte desta causa</h2>
+
+      <div class="linha-decorativa">
+        <svg viewBox="0 0 1100 150" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,50 C150,120 300,20 450,90 C600,160 750,40 1100,100" />
+        </svg>
+      </div>
+
+      <div class="conteudo-doacao">
+        <div class="texto-doacao">
+          <p>Cada contribuição é um passo para garantir dignidade, cuidado e amor aos nossos moradores.</p>
+          <p>Você pode escolher ajudar de duas formas: apoiar o abrigo em sua missão ou direcionar sua doação para um idoso específico.</p>
+          <p>Aqui a transparência é prioridade: todas as doações são registradas, e você poderá acompanhar como sua ajuda está fazendo diferença.</p>
+        </div>
+
+        <div class="cartoes-doacao">
+          <div class="card" id="c1">
+            <h3>Doar para o Abrigo</h3>
+            <div class="icone-casa">
+              <i class="fa-solid fa-house-chimney"></i>
+              <i class="fa-solid fa-heart icone-coracao"></i>
+            </div>
+            <p>
+              Ajude a manter nosso espaço funcionando, cobrindo custos com alimentação,
+              cuidados médicos, medicamentos e manutenção. <br><br>
+              Sua doação é fundamental para que possamos continuar acolhendo com dignidade.
+            </p>
+            <button class="botao">Fazer Doação</button>
+          </div>
+
+          <div class="card" id="c2">
+            <h3>Doar para um Idoso</h3>
+            <div class="icones-idosos">
+              <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="Idoso 1">
+              <img src="https://cdn-icons-png.flaticon.com/512/4140/4140051.png" alt="Idosa 2">
+              <img src="https://cdn-icons-png.flaticon.com/512/4140/4140037.png" alt="Idoso 3">
+              <img src="https://cdn-icons-png.flaticon.com/512/4140/4140061.png" alt="Idosa 4">
+            </div>
+            <p>
+              Escolha um de nossos moradores e acompanhe de perto o impacto da sua contribuição. <br><br>
+              Você receberá atualizações sobre como sua ajuda está transformando a vida dessa pessoa.
+            </p>
+            <button class="botao">Escolher Idoso</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="not">
+      <section class="noticias">
+        <h2>Notícias & Atualizações</h2>
+        <div class="not2">
+          <div class="lista-noticias">
+            <div class="noticia">
+              <div class="data">12/08/2025</div>
+              <div class="conteudo">
+                <h4>Chegaram novos equipamentos para fisioterapia</h4>
+                <p>Graças às doações do último mês, ampliamos as atividades de cuidado físico.</p>
+              </div>
+              <div class="icone"><i class="fa-regular fa-bell"></i></div>
+            </div>
+
+            <div class="noticia">
+              <div class="data">04/08/2025</div>
+              <div class="conteudo">
+                <h4>Almoço comunitário com voluntários</h4>
+                <p>Um dia especial de integração e afeto com a comunidade.</p>
+              </div>
+              <div class="icone"><i class="fa-regular fa-bell"></i></div>
+            </div>
+
+            <div class="noticia">
+              <div class="data">25/07/2025</div>
+              <div class="conteudo">
+                <h4>Relatório financeiro de julho disponível</h4>
+                <p>Confira a aplicação dos recursos em alimentação, saúde e manutenção.</p>
+              </div>
+              <div class="icone"><i class="fa-regular fa-bell"></i></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
   </section>
 
   <!-- ============================
