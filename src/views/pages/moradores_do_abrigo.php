@@ -1,19 +1,13 @@
 <?php
-// Configurações do banco de dados
+// Conexão com o banco
 $servername = "localhost";
 $username   = "root";
 $password   = "";
 $dbname     = "abrigo_sao_francisco_de_assis";
 
-// Cria a conexão
 $conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) die("Conexão falhou: " . $conn->connect_error);
 
-// Verifica a conexão
-if ($conn->connect_error) {
-    die("Conexão falhou: " . $conn->connect_error);
-}
-
-// Busca todos os moradores cadastrados, incluindo a coluna de likes
 $sql = "SELECT id, nome, idade, cidade_de_origem, foto_perfil, criado_em, likes FROM idosos ORDER BY criado_em DESC";
 $result = $conn->query($sql);
 ?>
@@ -21,213 +15,225 @@ $result = $conn->query($sql);
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moradores do Abrigo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel de Moradores</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
 <style>
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
-    margin: 0;
-    padding: 0;
-    display: flex;
+  background: radial-gradient(circle at top left, #b3b3b2ff, #504f4eff);
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
 }
 
-/* Menu lateral */
-.sidebar {
-    width: 220px;
-    height: 100vh;
-    background-color: #2c3e50;
-    color: white;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.2);
-    position: fixed;
-    top: 0;
-    left: 0;
+/* HEADER */
+.navbar {
+  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, #656263ff, #242e35ff);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
-.sidebar h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #34495e;
-    padding-bottom: 10px;
+.navbar-brand {
+  font-weight: 600;
+  color: #00f0ea !important;
 }
-.sidebar ul {
-    list-style: none;
-    padding: 0;
+.navbar-brand i {
+  color: #00f0ea;
 }
-.sidebar ul li {
-    margin-bottom: 15px;
+.offcanvas {
+  background: #141225;
+  color: #ddd;
 }
-.sidebar ul li a {
-    color: #ecf0f1;
-    text-decoration: none;
-    display: block;
-    padding: 10px;
-    border-radius: 5px;
-    transition: 0.3s;
+.offcanvas a {
+  color: #ccc;
+  text-decoration: none;
+  display: block;
+  padding: .7rem 1rem;
+  border-radius: .5rem;
+  transition: .3s;
 }
-.sidebar ul li a:hover {
-    background-color: #34495e;
+.offcanvas a:hover {
+  background: rgba(255,255,255,0.05);
+  color: #fff;
 }
 
-/* Conteúdo principal */
-.main-content {
-    margin-left: 240px;
-    padding: 20px;
-    flex-grow: 1;
-}
-.main-content h1 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #2c3e50;
+/* MAIN CONTENT */
+main {
+  margin-top: 6rem;
+  padding: 2rem 1rem;
 }
 
-/* Cards de moradores */
-.card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 20px;
-}
-
+/* CARDS */
 .card {
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 20px;
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    position: relative;
-    transition: transform 0.2s, box-shadow 0.2s;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 15px;
+  color: #fff;
+  transition: all .3s ease;
+  overflow: hidden;
+  cursor: pointer; /* <- NOVO: indica que o card é clicável */
 }
 .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
 }
-.profile-pic {
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
-    object-fit: cover;
-    border: 2px solid #ddd;
+.card img {
+  border-radius: 12px;
+  border: 2px solid #00f0ea;
+  object-fit: cover;
+  height: 120px;
+  width: 120px;
 }
-.info {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+.card-title {
+  font-size: 1.2rem;
+  margin-bottom: .5rem;
 }
-.info h3 {
-    margin: 0;
-    color: #2c3e50;
-}
-.info p {
-    margin: 0;
-    font-size: 0.9em;
-    color: #555;
-}
-.card-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
+.card-text {
+  font-size: .95rem;
+  color: #ccc;
 }
 
-/* Like */
-.like-container {
-    display: flex;
-    align-items: center;
-    position: absolute;
-    top: 10px;
-    right: 10px;
+/* LIKE BUTTON */
+.like-btn {
+  border: none;
+  background: none;
+  color: #ccc;
+  font-size: 1.3rem;
+  transition: .3s;
 }
-.heart-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    color: #ccc;
-    transition: color 0.2s ease;
-}
-.heart-btn.liked {
-    color: #e74c3c;
+.like-btn.liked {
+  color: #e74c3c;
+  transform: scale(1.2);
 }
 .like-count {
-    margin-left: 5px;
-    font-weight: bold;
-    color: #555;
+  margin-left: 6px;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* SECTION TITLE */
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  color: #00f0ea;
 }
 </style>
 </head>
 <body>
 
-<div class="sidebar">
-    <h2>Abrigo São Francisco</h2>
-    <ul>
-        <li><a href="ADMpage.php">Cadastro de Morador</a></li>
-        <li><a href="moradores_do_abrigo.php">Moradores</a></li>
-        <li><a href="#">Quem Somos</a></li>
-        <li><a href="#">Doações</a></li>
-        <li><a href="#">Formações</a></li>
-    </ul>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <i class="bi bi-house-heart"></i> Abrigo São Francisco
+    </a>
+
+    <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral">
+      <i class="bi bi-list fs-2"></i>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end d-none d-lg-flex">
+      <ul class="navbar-nav gap-3">
+        <li><a class="nav-link text-white" href="ADMpage.php"><i class="bi bi-person-plus"></i> Cadastro</a></li>
+        <li><a class="nav-link text-white" href="moradores_do_abrigo.php"><i class="bi bi-people"></i> Moradores</a></li>
+        <li><a class="nav-link text-white" href="#"><i class="bi bi-info-circle"></i> Quem Somos</a></li>
+        <li><a class="nav-link text-white" href="#"><i class="bi bi-hand-heart"></i> Doações</a></li>
+        <li><a class="nav-link text-white" href="#"><i class="bi bi-journal-text"></i> Formações</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- MENU LATERAL -->
+<div class="offcanvas offcanvas-end" id="menuLateral" tabindex="-1">
+  <div class="offcanvas-header">
+    <h5><i class="bi bi-house-heart"></i> Menu</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <a href="ADMpage.php"><i class="bi bi-person-plus"></i> Cadastro</a>
+    <a href="moradores_do_abrigo.php"><i class="bi bi-people"></i> Moradores</a>
+    <a href="#"><i class="bi bi-info-circle"></i> Quem Somos</a>
+    <a href="#"><i class="bi bi-hand-heart"></i> Doações</a>
+    <a href="#"><i class="bi bi-journal-text"></i> Formações</a>
+    <hr class="border-secondary">
+    <a href="#"><i class="bi bi-gear"></i> Configurações</a>
+    <div class="mt-auto pt-4 text-secondary small">Versão do sistema • 1.0</div>
+  </div>
 </div>
 
-<div class="main-content">
-    <h1>Moradores Cadastrados</h1>
-    <div class="card-container">
-        <?php
-        if ($result && $result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                $foto = !empty($row['foto_perfil']) 
-                    ? "uploads/perfil/" . htmlspecialchars($row['foto_perfil']) 
-                    : "https://via.placeholder.com/100";
-        ?>
-        <div style="position: relative;">
-            <a href="perfil_idoso.php?id=<?php echo $row['id']; ?>" class="card-link">
-                <div class="card">
-                    <img src="<?php echo $foto; ?>" alt="Foto de <?php echo htmlspecialchars($row['nome']); ?>" class="profile-pic">
-                    <div class="info">
-                        <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
-                        <p><strong>Idade:</strong> <?php echo htmlspecialchars($row['idade']); ?> anos</p>
-                        <p><strong>Cidade:</strong> <?php echo htmlspecialchars($row['cidade_de_origem']); ?></p>
-                        <p><strong>Data de Cadastro:</strong> <?php echo date("d/m/Y", strtotime($row['criado_em'])); ?></p>
-                    </div>
-                </div>
-            </a>
-            <div class="like-container">
-                <button class="heart-btn" data-user-id="<?php echo $row['id']; ?>">&#x2764;</button>
-                <span class="like-count"><?php echo $row['likes']; ?></span>
-            </div>
+<!-- CONTEÚDO PRINCIPAL -->
+<main class="container">
+  <h1><i class="bi bi-person-bounding-box"></i> Moradores Cadastrados</h1>
+  <div class="row g-4">
+    <?php
+    if ($result && $result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $foto = !empty($row['foto_perfil'])
+                ? "uploads/perfil/" . htmlspecialchars($row['foto_perfil'])
+                : "https://via.placeholder.com/120";
+    ?>
+    <div class="col-md-6 col-lg-4">
+      <div class="card p-3 h-100 card-clickable" data-id="<?php echo $row['id']; ?>">
+        <div class="d-flex align-items-center gap-3">
+          <img src="<?php echo $foto; ?>" alt="Foto de <?php echo htmlspecialchars($row['nome']); ?>">
+          <div>
+            <h5 class="card-title"><?php echo htmlspecialchars($row['nome']); ?></h5>
+            <p class="card-text mb-1"><i class="bi bi-cake"></i> <?php echo htmlspecialchars($row['idade']); ?> anos</p>
+            <p class="card-text mb-1"><i class="bi bi-geo-alt"></i> <?php echo htmlspecialchars($row['cidade_de_origem']); ?></p>
+            <p class="card-text"><i class="bi bi-calendar3"></i> <?php echo date("d/m/Y", strtotime($row['criado_em'])); ?></p>
+          </div>
         </div>
-        <?php
-            }
-        } else {
-            echo "<p>Nenhum morador cadastrado ainda.</p>";
-        }
-        $conn->close();
-        ?>
+        <div class="d-flex justify-content-end align-items-center mt-3">
+          <button class="like-btn" data-user-id="<?php echo $row['id']; ?>">
+            <i class="bi bi-heart-fill"></i>
+          </button>
+          <span class="like-count"><?php echo $row['likes']; ?></span>
+        </div>
+      </div>
     </div>
-</div>
+    <?php
+        }
+    } else {
+        echo "<p class='text-center text-secondary'>Nenhum morador cadastrado ainda.</p>";
+    }
+    $conn->close();
+    ?>
+  </div>
+</main>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-const heartButtons = document.querySelectorAll('.heart-btn');
-heartButtons.forEach(button => {
-    button.addEventListener('click', (event) => {
-        event.stopPropagation();
-        const userId = button.getAttribute('data-user-id');
-        const likeCountSpan = button.nextElementSibling;
-        const isLiked = button.classList.toggle('liked');
+// Redirecionar para o perfil ao clicar no card
+document.querySelectorAll('.card-clickable').forEach(card => {
+  card.addEventListener('click', () => {
+    const id = card.getAttribute('data-id');
+    window.location.href = 'perfil_idoso.php?id=' + encodeURIComponent(id);
+  });
+});
 
-        let currentLikes = parseInt(likeCountSpan.textContent);
-        if (isLiked) currentLikes++;
-        else currentLikes--;
-        likeCountSpan.textContent = currentLikes;
+// Botão de like (já existente)
+document.querySelectorAll('.like-btn').forEach(button => {
+  button.addEventListener('click', (ev) => {
+    ev.stopPropagation(); // impede que o clique no botão dispare o redirecionamento
+    const id = button.getAttribute('data-user-id');
+    const span = button.nextElementSibling;
+    const liked = button.classList.toggle('liked');
+    let count = parseInt(span.textContent) || 0;
+    span.textContent = liked ? count + 1 : Math.max(0, count - 1);
 
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'update_likes.php', true);
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.send('user_id=' + userId + '&action=' + (isLiked ? 'like' : 'unlike'));
-    });
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'update_likes.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.send('user_id=' + encodeURIComponent(id) + '&action=' + (liked ? 'like' : 'unlike'));
+  });
 });
 </script>
-
 </body>
 </html>
