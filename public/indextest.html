@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transparência em Primeiro Lugar</title>
+
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Ícones Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #d9cfc3;
+      color: #3a3a3a;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.6rem;
+      color: #2c2c2c;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    h1::after {
+      content: "";
+      display: block;
+      width: 180px;
+      height: 1px;
+      background-color: #3a3a3a;
+      margin: 10px auto 0;
+    }
+
+    p {
+      max-width: 760px;
+      margin: 0 auto 45px;
+      line-height: 1.6;
+      color: #5a5a5a;
+      font-size: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 300px);
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #fff;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .grid-item {
+      padding: 35px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+    }
+
+    .grid-item i {
+      font-size: 35px;
+      color: #3a3a3a;
+      margin-bottom: 10px;
+    }
+
+    .grid-item h3 {
+      font-size: 1.1rem;
+      margin: 8px 0 8px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .grid-item p {
+      font-size: 0.9rem;
+      color: #555;
+      margin: 0;
+      max-width: 230px;
+      line-height: 1.5;
+    }
+
+    .alimentacao {
+      background-color: #f0e4de;
+    }
+
+    .rodape {
+      margin-top: 45px;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .btn {
+      margin-top: 25px;
+      background-color: #4b4b4b;
+      color: #fff;
+      padding: 14px 30px;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #333;
+    }
+
+    @media (max-width: 1000px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+.button-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.btn-relatorios {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #5a554f;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 10px 22px; /* 🔹 reduzido */
+  border-radius: 50px;
+  text-decoration: none;
+  border: 2px solid #ffffff;
+  transition: all 0.3s ease;
+  font-size: 0.85rem; /* levemente menor */
+  width: fit-content; /* 🔹 se ajusta ao texto */
+  max-width: 300px;   /* 🔹 evita ficar muito largo */
+}
+
+.btn-relatorios i {
+  font-size: 0.95rem;
+  transform: rotate(45deg);
+}
+
+.btn-relatorios:hover {
+  background-color: #6a655f;
+  transform: translateY(-2px);
+}
+
+  </style>
+</head>
+<body>
+
+  <h1>Transparência em Primeiro Lugar</h1>
+  <p>No nosso abrigo, cada recurso é utilizado com responsabilidade e clareza.<br>
+  As doações recebidas e 60% da contribuição mensal dos idosos são totalmente revertidas para custear alimentação, cuidados, infraestrutura e lazer.</p>
+
+  <div class="grid">
+    <!-- Linha 1 -->
+    <img src="https://images.unsplash.com/photo-1728271021773-65d366c1a6d2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1476" alt="Grupo de idosos se divertindo">
+    
+    <div class="grid-item">
+      <i class="fa-solid fa-chart-line"></i>
+      <h3>Finanças</h3>
+      <p>Controle rigoroso dos recursos e publicação de extratos mensais e anuais, com total transparência.</p>
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1540778339538-067eae485e9f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=626" alt="Corredor acessível com cadeira de rodas">
+
+    <div class="grid-item">
+      <i class="fa-solid fa-house-chimney"></i>
+      <h3>Infraestrutura</h3>
+      <p>Parte do valor é investida em manutenção, melhorias e adaptações de acessibilidade.</p>
+    </div>
+
+    <!-- Linha 2 -->
+    <div class="grid-item alimentacao">
+      <i class="fa-solid fa-utensils"></i>
+      <h3>Alimentação</h3>
+      <p>Garantia de refeições balanceadas e nutritivas preparadas com carinho todos os dias.</p>
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1587556930799-8dca6fad6d41?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Idosa sendo servida com refeição saudável">
+
+    <div class="grid-item">
+      <i class="fa-solid fa-hand-holding-medical"></i>
+      <h3>Cuidados</h3>
+      <p>Investimento constante em profissionais de saúde, medicamentos e atividades de bem-estar.</p>
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2078" alt="Atividade física para idosos">
+  </div>
+
+  <div class="rodape">
+    <p>Tudo é registrado e pode ser consultado por qualquer pessoa.</p>
+    <div class="button-container">
+        <a href="#" class="btn-relatorios">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            ACESSE RELATÓRIOS COMPLETOS
+        </a>
+    </div>
+  </div>
+  
+
+</body>
+</html>

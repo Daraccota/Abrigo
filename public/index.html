@@ -1,17 +1,265 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Transparência em Primeiro Lugar</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="assets/css/pag1.css">
+  <title>Abrigo São Francisco de Assis</title>
 
-  <!-- Fontes -->
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  <!-- Ícones Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Fontes usadas nas duas páginas -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
   <style>
-    body {
+  /* ---------------------------
+     CSS da PÁGINA PRINCIPAL (mantive exatamente como você tinha)
+     --------------------------- */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    overflow-x: hidden;
+    background-color: #d4c4b0;
+  }
+  html, body { overflow-x: hidden; }
+  img, section, div, header, main, footer { max-width: 100%; }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .main-header {
+    background-color: #5a5a5a;
+    padding: 15px 0;
+    position: relative;
+    z-index: 100;
+  }
+  .main-header .container { gap: 40px; }
+  .logo { display: flex; align-items: center; }
+  .main-nav { display: flex; gap: 30px; flex: 1; justify-content: center; }
+  .nav-link {
+    color: white; text-decoration: none; font-size: 14px; font-weight: 400;
+    transition: opacity 0.3s; position: relative;
+  }
+  .nav-link::before {
+    content: ''; position: absolute; left: -15px; top: 50%; transform: translateY(-50%);
+    width: 1px; height: 30px; background-color: rgba(255,255,255,0.3);
+  }
+  .nav-link:first-child::before { display: none; }
+  .nav-link:hover { opacity: 0.8; }
+
+  .donate-btn {
+    background-color: #d4c4b0; color: #5a5a5a; border: none; padding: 12px 30px;
+    font-size: 14px; font-weight: 600; cursor: pointer; border-radius: 5px;
+    transition: background-color 0.3s; font-family: 'Poppins', sans-serif;
+  }
+  .donate-btn:hover { background-color: #c4b4a0; }
+
+  .hero-section { position: relative; min-height: 600px; overflow: hidden; }
+  .hero-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+  .hero-background::after {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%);
+  }
+  .hero-background img { width:100%; height:100%; object-fit:cover; }
+
+  .hero-content {
+    position: relative; z-index:2; max-width:1200px; margin:0 auto; padding:80px 20px;
+    display:flex; justify-content:space-between; align-items:center; gap:60px;
+  }
+  .hero-text { flex:1; max-width:550px; }
+  .hero-text h1 { font-size:42px; font-weight:700; color:white; line-height:1.2; margin-bottom:30px; }
+  .hero-description { color:white; font-size:15px; line-height:1.7; margin-bottom:20px; font-weight:300; }
+
+  .hero-images { position: relative; flex-shrink:0; width:400px; height:400px; }
+  .circle-image { position:absolute; border-radius:50%; overflow:hidden; border:5px solid white; box-shadow:0 10px 30px rgba(0,0,0,0.3); }
+  .circle-image.large { width:320px; height:320px; top:0; right:0; }
+  .circle-image.small { width:220px; height:220px; bottom:0; left:0; z-index:3; }
+  .circle-image.medio { width:190px; height:190px; top:270px; right:0; z-index:3; }
+  .circle-image img { width:100%; height:100%; object-fit:cover; }
+
+  .curve-decoration { position:absolute; bottom:0; left:0; width:100%; height:180px; overflow:hidden; z-index:2; }
+  .curve-decoration svg { width:100%; height:100%; display:block; }
+
+  .stats-section { background-color:#d4c4b0; padding:60px 0 100px; position:relative; z-index:3; }
+  .stats-section .container { gap:30px; align-items:stretch; }
+  .stat-card { background-color:white; padding:35px 25px; border-radius:10px; flex:1; border:2px solid #5a5a5a; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition:transform 0.3s; }
+  .stat-card:hover { transform:translateY(-5px); }
+  .stat-card h3 { font-size:18px; font-weight:700; font-style:italic; margin-bottom:15px; color:#333; }
+  .stat-card p { font-size:14px; line-height:1.6; color:#666; font-weight:300; }
+
+  @media (max-width:968px) {
+    .main-nav { display:none; }
+    .hero-content { flex-direction:column; text-align:center; }
+    .hero-text { max-width:100%; }
+    .hero-images { width:300px; height:300px; }
+    .circle-image.large { width:240px; height:240px; }
+    .circle-image.small { width:180px; height:180px; }
+    .stats-section .container { flex-direction:column; }
+  }
+  @media (max-width:768px) {
+    .hero-text h1 { font-size:32px; }
+    .stat-card { padding:25px 20px; }
+  }
+
+  .stats-section { background-color:transparent; position:relative; margin-top:-120px; z-index:5; }
+  .stats-container {
+    max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; gap:25px; flex-wrap:wrap; padding:0 20px;
+  }
+  .stat-card { background-color:#fff; position:relative; flex:1; min-width:280px; border:3px solid #3b3b3b; border-radius:10px; box-shadow:0 6px 15px rgba(0,0,0,0.08); padding:25px 20px; transition:all .3s ease; }
+  .stat-header { display:flex; align-items:center; gap:15px; margin-left:50px; margin-bottom:15px; }
+  .stat-icon { position:absolute; top:0%; left:0%; width:60px; height:60px; border-end-end-radius:50%; border-end-start-radius:50%; display:flex; align-items:center; justify-content:center; background-color:#3b3b3b; }
+  .stat-card h3 { font-size:17px; font-weight:700; color:#2e2e2e; line-height:1.3; }
+  .stat-card p { font-size:14px; color:#555; font-weight:400; line-height:1.6; }
+
+  @media (max-width:968px) {
+    .stats-container { flex-direction:column; align-items:center; }
+    .stat-card { max-width:350px; margin-bottom:25px; }
+  }
+
+  /* MENU MOBILE (principal) */
+  .nav-list { display:flex; gap:30px; list-style:none; }
+  .mobile-menu { display:none; cursor:pointer; position:relative; z-index:1001; }
+  .hamburger span { display:block; width:30px; height:3px; background:white; margin:6px 0; transition:0.3s; }
+  .close-menu { display:none; font-size:26px; font-weight:bold; color:white; }
+  .mobile-menu.active .hamburger { display:none; }
+  .mobile-menu.active .close-menu { display:block; }
+  @media (max-width:968px) { .mobile-menu { display:block; } }
+
+  /* Ajuste das imagens circulares em responsivo */
+  @media (max-width:968px) {
+    .hero-images { width:260px; height:260px; margin:0 auto; position:relative; }
+    .circle-image.large { width:200px; height:200px; top:0; right:50%; transform:translateX(50%); }
+    .circle-image.medio { width:150px; height:150px; top:140px; right:0; z-index:3; }
+    .circle-image.small { width:140px; height:140px; bottom:0; left:0; z-index:3; }
+  }
+  @media (max-width:600px) {
+    .hero-images { width:220px; height:220px; }
+    .circle-image.large { width:170px; height:170px; }
+    .circle-image.medio { width:130px; height:130px; top:120px; }
+    .circle-image.small { width:120px; height:120px; }
+  }
+
+  @media (max-width:968px) {
+    .nav-list {
+      position: fixed; top:0; right:0; width:280px; height:100vh; background:#5a5a5a;
+      flex-direction:column; align-items:center; justify-content:center; padding-top:80px;
+      transform: translateX(100%); transition: transform .3s ease-in; z-index:999;
+    }
+    .nav-list li { margin: 18px 0; }
+  }
+
+  .nav-list.active { transform: translateX(0); }
+  @keyframes navLinkFade { from { opacity:0; transform:translateX(50px);} to {opacity:1; transform:translateX(0);} }
+
+  /* escondendo/mostrando donate btn mobile/desktop */
+  .donate-mobile { display:none; }
+  @media (max-width:968px) {
+    .donate-desktop { display:none; }
+    .donate-mobile { display:block; margin-top:30px; }
+    .donate-mobile .donate-btn { width:80%; text-align:center; }
+  }
+
+  /* ---------------------------
+     FIM CSS DA PÁGINA PRINCIPAL
+     --------------------------- */
+
+  /* ---------------------------
+     CSS DA PÁGINA "HISTÓRIAS QUE INSPIRAM"
+     Escopado dentro de .historia-section para evitar conflitos
+     --------------------------- */
+
+  .historia-section { background: #fff; color: #333; }
+  .historia-section .container {
+    max-width: 1200px; margin: 0 auto; padding: 40px 20px; display:block;
+  }
+  .historia-section h2 {
+    text-align: center; font-family: 'Dancing Script', cursive; font-size: 2.5rem;
+    margin-bottom: 40px; position:relative;
+  }
+  .historia-section h2::after {
+    content: ""; position:absolute; bottom:-10px; left:50%; transform:translateX(-50%);
+    width:200px; height:2px; background-color:#000;
+  }
+
+  .historia-section .content {
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:40px;
+  }
+  .historia-section .gallery {
+    display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:850px; width:100%; flex:1;
+  }
+  .historia-section .left-column,
+  .historia-section .right-column { display:flex; flex-direction:column; gap:20px; }
+
+  .historia-section .img1,
+  .historia-section .img2,
+  .historia-section .img3,
+  .historia-section .img4 {
+    border-radius:20px; object-fit:cover; display:block; box-shadow:0 6px 20px rgba(0,0,0,0.1);
+    transition: transform .3s ease;
+  }
+  .historia-section .img1 { width:100%; }
+  .historia-section .img2 { width:80%; margin-left:20%; }
+  .historia-section .img3 { width:60%; }
+  .historia-section .img4 { width:90%; }
+  .historia-section .gallery img:hover { transform:scale(1.03); }
+
+  .historia-section .text { flex:1; font-size:1rem; }
+  .historia-section .text p { margin-bottom:20px; text-align:justify; }
+
+  @media (max-width:900px) {
+    .historia-section .content { flex-direction:column; align-items:center; text-align:center; gap:25px; }
+    .historia-section .gallery { grid-template-columns:1fr 1fr; gap:15px; max-width:100%; }
+    .historia-section .left-column, .historia-section .right-column { gap:15px; }
+    .historia-section .img1, .historia-section .img2, .historia-section .img3, .historia-section .img4 {
+      width:100%; border-radius:18px; object-fit:cover;
+    }
+    .historia-section .img2 { width:85%; margin-left:15%; }
+    .historia-section .img3 { width:70%; margin-left:0; margin-right:auto; }
+    .historia-section .img4 { width:90%; margin:0 auto; }
+  }
+
+  /* Testimonials */
+  .historia-section .testimonials {
+    position: relative; background-color:#f4f0eb; padding:60px 0; overflow:hidden; margin-top:60px;
+  }
+  .historia-section .testimonial-wrapper { display:flex; gap:30px; transition:transform .5s ease; }
+  .historia-section .testimonial {
+    background-color:#fff; border-radius:25px; box-shadow:0 4px 10px rgba(0,0,0,0.1); flex:0 0 350px;
+    padding:30px 35px; position:relative; transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .historia-section .testimonial:hover { transform:translateY(-6px); box-shadow:0 8px 20px rgba(0,0,0,0.15); }
+  .historia-section .testimonial small { position:absolute; top:20px; right:25px; color:#777; font-size:14px; }
+  .historia-section .stars { color:#f7b500; font-size:18px; margin-bottom:10px; }
+  .historia-section .profile { display:flex; align-items:center; gap:15px; margin-top:25px; }
+  .historia-section .profile img { width:65px; height:65px; border-radius:50%; object-fit:cover; }
+  .historia-section .message { font-size:18px; color:#222; line-height:1.5; margin-top:20px; }
+  .historia-section .author { text-align:right; color:#666; font-size:15px; margin-top:20px; font-weight:500; }
+
+  .historia-section .testimonial-nav {
+    position:absolute; top:50%; width:100%; display:flex; justify-content:space-between; transform:translateY(-50%);
+    opacity:0; transition:opacity .3s ease; pointer-events:none;
+  }
+  .historia-section .testimonials:hover .testimonial-nav { opacity:1; pointer-events:all; }
+
+  .historia-section .nav-btn {
+    background-color:white; border:none; font-size:2rem; cursor:pointer; border-radius:50%; width:45px; height:45px;
+    display:flex; align-items:center; justify-content:center; box-shadow:0 3px 8px rgba(0,0,0,0.15); transition:background .3s, transform .3s;
+  }
+  .historia-section .nav-btn:hover { background:#f7b500; color:white; transform:scale(1.1); }
+
+  .historia-section .cta { font-size:20px; text-align:center; margin-top:60px; }
+  .historia-section .cta button {
+    background-color:#6b5446; margin-top:40px; color:white; border:none; padding:17px 37px; border-radius:30px; font-size:1rem; cursor:pointer;
+  }
+  .historia-section .cta button:hover { background-color:#5b4539; }
+
+  /* fim CSS historia */
+
+  /*BLOCO 3*/
+    .body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
       background-color: #d9cfc3;
@@ -134,46 +382,745 @@
       }
     }
 
-.button-container {
-  text-align: center;
-  margin-top: 40px;
-}
+    .button-container {
+      text-align: center;
+      margin-top: 40px;
+    }
 
-.btn-relatorios {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background-color: #5a554f;
-  color: #ffffff;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 10px 22px; /* 🔹 reduzido */
-  border-radius: 50px;
-  text-decoration: none;
-  border: 2px solid #ffffff;
-  transition: all 0.3s ease;
-  font-size: 0.85rem; /* levemente menor */
-  width: fit-content; /* 🔹 se ajusta ao texto */
-  max-width: 300px;   /* 🔹 evita ficar muito largo */
-}
+    .btn-relatorios {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: #5a554f;
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 10px 22px; /* 🔹 reduzido */
+      border-radius: 50px;
+      text-decoration: none;
+      border: 2px solid #ffffff;
+      transition: all 0.3s ease;
+      font-size: 0.85rem; /* levemente menor */
+      width: fit-content; /* 🔹 se ajusta ao texto */
+      max-width: 300px;   /* 🔹 evita ficar muito largo */
+    }
 
-.btn-relatorios i {
-  font-size: 0.95rem;
-  transform: rotate(45deg);
-}
+    .btn-relatorios i {
+      font-size: 0.95rem;
+      transform: rotate(45deg);
+    }
 
-.btn-relatorios:hover {
-  background-color: #6a655f;
-  transform: translateY(-2px);
-}
+    .btn-relatorios:hover {
+      background-color: #6a655f;
+      transform: translateY(-2px);
+    }
+
+    /*BLOCO 4*/
+    .body2{
+      box-sizing: border-box;
+    }
+
+    .body2 {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .body2 {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* --- Seção de Doação --- */
+    .doacao {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 20px 40px;
+      position: relative;
+    }
+
+    .titulo-secao {
+      font-family: 'Dancing Script', cursive;
+      text-align: center;
+      font-size: 2.5rem;
+      color: #2b2b2b;
+      margin-bottom: 50px;
+    }
+
+    .conteudo-doacao {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      position: relative;
+    }
+
+    .texto-doacao {
+      flex: 1 1 45%;
+      font-size: 1.3rem;
+      line-height: 1.9;
+      color: #444;
+      margin-top: 5%;
+      margin-left: 0; /* 🔧 removido -10% que causava scroll */
+      max-width: 100%;
+    }
+
+    .cartoes-doacao {
+      flex: 1 1 45%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card {
+      background: #fff;
+      width: 100%;
+      max-width: 500px;
+      height: 350px;
+      margin: 0 auto;
+      padding: 30px 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border: 2px solid #000000;
+      text-align: center;
+      position: relative;
+      border-radius: 16px;
+    }
+
+    #c1 {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    #c2 {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    .card h3 {
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 5px;
+      font-size: 1rem;
+    }
+
+    .card p {
+      font-size: 0.85rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .botao {
+      background-color: #39b14a;
+      color: #fff;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .botao:hover {
+      background-color: #2f9a3e;
+    }
+
+    .icones-idosos {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .icones-idosos img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: #f2f2f2;
+    }
+
+    .icone-casa {
+      position: relative;
+      display: inline-block;
+      font-size: 2.8rem;
+      color: #000;
+      margin: 10px 0 15px;
+    }
+
+    .icone-coracao {
+      position: absolute;
+      font-size: 1.2rem;
+      color: #2ecc71;
+      top: 18px;
+      left: 22px;
+    }
+
+    /* --- Notícias --- */
+    .not {
+      border: 2px solid black;
+      margin: 90px auto;
+      padding-left: 40px;
+      padding-right: 40px;
+      border-radius: 16px;
+      max-width: 1000px;
+      overflow: hidden;
+    }
+
+    .not2 {
+      border: 2px solid rgb(181, 178, 178);
+      border-radius: 16px;
+      padding: 50px 30px;
+    }
+
+    .noticias {
+      width: 100%;
+      max-width: 1000px;
+      margin: 90px auto;
+      padding: 0 20px 60px;
+      position: relative;
+    }
+
+    .noticias h2 {
+      font-family: 'Dancing Script', cursive;
+      text-align: center;
+      font-size: 2.5rem;
+      color: #2b2b2b;
+      margin-bottom: 40px;
+    }
+
+    .lista-noticias {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .noticia {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to right, #f7f1e9, #fff);
+      border-radius: 12px;
+      padding: 18px 25px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e7e2db;
+    }
+
+    .noticia .data {
+      font-size: 0.85rem;
+      color: #999;
+      margin-right: 20px;
+      min-width: 90px;
+    }
+
+    .noticia .conteudo {
+      flex: 1;
+    }
+
+    .noticia h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0 0 4px;
+      color: #2c2c2c;
+    }
+
+    .noticia p {
+      font-size: 0.9rem;
+      color: #666;
+      margin: 0;
+    }
+
+    .noticia .icone i {
+      color: #c8bba9;
+      font-size: 1.1rem;
+    }
+
+    .linha-decorativa {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 30%;
+      pointer-events: none;
+      opacity: 0.4;
+      overflow: hidden;
+    }
+
+    .linha-decorativa svg path{
+      stroke: #cfc8bf;
+      stroke-width: 1.5;
+      fill: none;
+    }
+
+    /* --- RESPONSIVIDADE --- */
+
+    /* Tablets */
+    @media (max-width: 992px) {
+      .conteudo-doacao {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .texto-doacao {
+        margin: 0 auto;
+        text-align: center;
+        font-size: 1.2rem;
+        line-height: 1.8;
+      }
+
+      .card {
+        width: 85%;
+        max-width: 420px;
+        height: auto;
+      }
+
+      .not {
+        margin: 60px 20px;
+      }
+    }
+
+    /* Celulares */
+    @media (max-width: 600px) {
+      .titulo-secao {
+        font-size: 2rem;
+      }
+
+      .texto-doacao {
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .card {
+        width: 90%;
+        height: auto;
+        padding: 25px 20px;
+      }
+
+      .not {
+        margin: 40px 10px;
+      }
+
+      .not2 {
+        padding: 30px 20px;
+      }
+
+      .noticia {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .noticia h4 {
+        font-size: 1.1rem;
+      }
+
+      .noticia p {
+        font-size: 0.9rem;
+      }
+    }
+
+        /*BLOCO 5*/
+
+      /* Reset e base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #E9DFD1;
+      color: #2c2c2c;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.5;
+    }
+
+    /* FAQ */
+    .faq-section {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
+
+    .faq-section h2 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      border-left: 5px solid #2c2c2c;
+      padding-left: 15px;
+      margin-bottom: 30px;
+    }
+
+    .faq-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .faq-item {
+      background-color: #E9DFD1;
+      border-bottom: 1px solid #c8bbaa;
+      transition: all 0.3s ease;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: left;
+      padding: 18px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #2c2c2c;
+    }
+
+    .faq-question span {
+      font-size: 1.3rem;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question span {
+      transform: rotate(90deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      background-color: #f4ede2;
+      transition: max-height 0.4s ease;
+      padding: 0 15px;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding: 15px;
+    }
+
+    /* Rodapé */
+    .footer {
+      background-color: #4a443f;
+      color: #f0edea;
+      margin-top: 100px;
+      padding: 40px 20px 25px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-left {
+      flex: 1 1 250px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .footer-logo img {
+      width: 110px;
+      height: 60px;
+    
+    }
+
+    .footer-logo p {
+      font-family: 'Times New Roman', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+
+    .footer-contact p {
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 50px;
+      flex: 2 1 500px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links h4 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .footer-links p {
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+
+    .footer-copy {
+      text-align: left;
+      font-size: 0.85rem;
+      margin-top: 30px;
+      color: #d4d0cc;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .faq-section {
+        margin: 60px auto;
+      }
+
+      .faq-section h2 {
+        font-size: 1.6rem;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .footer-copy {
+        text-align: center;
+      }
+    }
 
   </style>
 </head>
 <body>
 
+  <!-- ============================
+       BLOCO-1 PÁGINA PRINCIPAL 
+       ============================ -->
+  <header class="main-header">
+    <div class="container">
+      <div class="logo">
+        <img src="assets/img/Logo-abrigo_Prancheta-1-768x353.png" alt="Logo" width="120">
+      </div>
+
+      <!-- Botão do menu mobile -->
+      <div class="mobile-menu">
+        <div class="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="close-menu">✖</div>
+      </div>
+
+      <!-- Menu ÚNICO -->
+      <ul class="nav-list">
+        <li><a href="#" class="nav-link">Página inicial</a></li>
+        <li><a href="#" class="nav-link">Moradores</a></li>
+        <li><a href="#" class="nav-link">Transparência</a></li>
+        <li><a href="#" class="nav-link">Sobre</a></li>
+        <li><a href="#" class="nav-link">Contato</a></li>
+
+        <li class="donate-mobile">
+          <button class="donate-btn">Fazer Doação</button>
+        </li>
+      </ul>
+
+      <button class="donate-btn donate-desktop">Fazer Doação</button>
+    </div>
+  </header>
+
+  <section class="hero-section">
+    <div class="hero-background">
+      <img src="https://www.nursinghomeabusecenter.com/wp-content/uploads/2019/11/happy-seniors-nursing-home-1024x535.png" alt="Cuidado com idosos">
+    </div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Há mais de 30 anos acolhendo vidas com amor e dignidade</h1>
+        <p class="hero-description">O Abrigo São Francisco de Assis nasceu com a missão de oferecer cuidado, proteção e qualidade de vida para pessoas idosas em situação de vulnerabilidade. Nossa casa é mais do que um espaço físico: é um lar onde cada idoso encontra carinho, segurança e respeito.</p>
+        <p class="hero-description">Atuamos diariamente para garantir alimentação saudável, assistência à saúde, atividades sociais e muito afeto, sempre pautados pela transparência e pelo compromisso com a comunidade.</p>
+      </div>
+
+      <div class="hero-images">
+        <div class="circle-image large">
+          <img src="https://images.pexels.com/photos/7551671/pexels-photo-7551671.jpeg?auto=compress&cs=tinysrgb&w=800" alt="">
+        </div>
+        <div class="circle-image medio">
+          <img src="https://images.pexels.com/photos/3768131/pexels-photo-3768131.jpeg?auto=compress&cs=tinysrgb&w=800" alt="">
+        </div>
+        <div class="circle-image small">
+          <img src="https://images.pexels.com/photos/7551615/pexels-photo-7551615.jpeg?auto=compress&cs=tinysrgb&w=800" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="curve-decoration">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path d="M0,200 C360,350 1080,350 1440,100 L1440,320 L0,320 Z" fill="#d4c4b0"></path>
+      </svg>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="stats-container">
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-icon">
+            <svg width="40" height="40" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="15" y="10" width="30" height="35" rx="3" stroke="#ffffff" stroke-width="2" fill="none"/>
+              <line x1="20" y1="20" x2="40" y2="20" stroke="#ffffff" stroke-width="2"/>
+              <line x1="20" y1="27" x2="35" y2="27" stroke="#ffffff" stroke-width="2"/>
+              <text x="30" y="38" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold">31</text>
+            </svg>
+          </div>
+          <h3>+30 anos de história</h3>
+        </div>
+        <p>Experiência e tradição no cuidado com pessoas idosas.</p>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-icon">
+            <svg width="40" height="40" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="25" cy="20" r="6" stroke="#ffffff" stroke-width="2" fill="none"/>
+              <path d="M15 40C15 33 19 30 25 30C31 30 35 33 35 40" stroke="#ffffff" stroke-width="2" fill="none"/>
+              <circle cx="40" cy="23" r="5" stroke="#ffffff" stroke-width="2" fill="none"/>
+              <path d="M35 40C35 36 37 33 40 33C43 33 45 36 45 40" stroke="#ffffff" stroke-width="2" fill="none"/>
+              <circle cx="15" cy="23" r="5" stroke="#ffffff" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <h3>Mais de 40 idosos acolhidos</h3>
+        </div>
+        <p>Já transformamos vidas oferecendo carinho e dignidade.</p>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-icon">
+            <svg width="40" height="40" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M30 15L35 25L45 27L37 35L39 45L30 40L21 45L23 35L15 27L25 25L30 15Z" stroke="#ffffff" stroke-width="2" fill="none"/>
+              <circle cx="30" cy="30" r="3" fill="#ffffff"/>
+            </svg>
+          </div>
+          <h3>100% mantido por doações</h3>
+        </div>
+        <p>Sua contribuição é o que torna nosso trabalho possível.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       BLOCO-2 AQUI VAI A SEÇÃO "HISTÓRIAS QUE INSPIRAM" (INCLUÍ A PÁGINA INTEIRA AQUI,
+       preservando exatamente o conteúdo dela)
+       ============================ -->
+  <section class="historia-section" aria-label="Histórias que Inspiram">
+    <div class="container">
+      <h2>Histórias que Inspiram</h2>
+
+      <div class="content">
+        <div class="gallery">
+          <div class="left-column">
+            <img class="img1" src="https://plus.unsplash.com/premium_photo-1663054397533-2a3fb0cab5de?fm=jpg&q=80&w=1200"
+                 alt="Médica segurando as mãos de idoso sorridente">
+            <img class="img2" src="https://plus.unsplash.com/premium_photo-1661425771466-d2f71a338c49?fm=jpg&q=80&w=1200"
+                 alt="Mãos idosas segurando flores">
+          </div>
+
+          <div class="right-column">
+            <img class="img3" src="https://plus.unsplash.com/premium_photo-1658506620365-925c827c6fdc?fm=jpg&q=80&w=1200"
+                 alt="Mãos de idosos se tocando com carinho">
+            <img class="img4" src="https://plus.unsplash.com/premium_photo-1663134117014-2369806fe81e?fm=jpg&q=80&w=1200"
+                 alt="Cuidadora sorridente conversando com idosa feliz">
+          </div>
+        </div>
+
+        <div class="text">
+          <p>Cada idoso do nosso lar traz consigo uma vida cheia de memórias, aprendizados e momentos inesquecíveis.</p>
+          <p>Aqui, cada rosto guarda uma história única. São pessoas que viveram, sonharam e ainda têm muito para compartilhar.</p>
+          <p>Ao conhecê-los, você descobre não apenas histórias do passado, mas também a alegria do presente e a esperança no futuro.</p>
+        </div>
+      </div>
+
+      <!-- Avaliações (testimonials) -->
+      <div class="testimonials">
+        <div class="testimonial-wrapper" id="testimonialWrapper2">
+          <div class="testimonial">
+            <small>08/02/2025</small>
+            <div class="stars">★★★★★</div>
+            <div class="profile">
+              <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Dona Célia">
+              <p class="message">Ganhei uma nova família, cheia de afeto.</p>
+            </div>
+            <p class="author">Dona Célia, 74 anos</p>
+          </div>
+
+          <div class="testimonial">
+            <small>12/08/2021</small>
+            <div class="stars">★★★★★</div>
+            <div class="profile">
+              <img src="https://randomuser.me/api/portraits/women/70.jpg" alt="Dona Maria">
+              <p class="message">Aqui me sinto em casa e cercado de carinho.</p>
+            </div>
+            <p class="author">Dona Maria, 86 anos</p>
+          </div>
+
+          <div class="testimonial">
+            <small>17/03/2024</small>
+            <div class="stars">★★★★★</div>
+            <div class="profile">
+              <img src="https://randomuser.me/api/portraits/men/62.jpg" alt="Seu Roberto">
+              <p class="message">Eu gosto quando tem música ao vivo.</p>
+            </div>
+            <p class="author">Seu Roberto, 83 anos</p>
+          </div>
+
+          <div class="testimonial">
+            <small>12/08/2021</small>
+            <div class="stars">★★★★★</div>
+            <div class="profile">
+              <img src="https://randomuser.me/api/portraits/women/60.jpg" alt="Dona Helena">
+              <p class="message">Todos os dias me sinto amada e lembrada.</p>
+            </div>
+            <p class="author">Dona Helena, 72 anos</p>
+          </div>
+
+          <div class="testimonial">
+            <small>22/04/2023</small>
+            <div class="stars">★★★★★</div>
+            <div class="profile">
+              <img src="https://randomuser.me/api/portraits/women/59.jpg" alt="Dona Clara">
+              <p class="message">O carinho que recebo me dá forças todos os dias.</p>
+            </div>
+            <p class="author">Dona Clara, 75 anos</p>
+          </div>
+        </div>
+
+        <div class="testimonial-nav">
+          <button class="nav-btn" id="prevBtn2">&#10094;</button>
+          <button class="nav-btn" id="nextBtn2">&#10095;</button>
+        </div>
+      </div>
+
+      <div class="cta">
+        <p>Conheça os idosos que moram no abrigo</p>
+        <button>Perfil dos Idosos</button>
+      </div>
+    </div>
+  </section>
+
+    <!-- ============================
+       BLOCO-3 AQUI VAI A SEÇÃO "Transparência em Primeiro Lugar" (INCLUÍ A PÁGINA INTEIRA AQUI,
+       preservando exatamente o conteúdo dela)
+       ============================ -->
+<section class="body">
   <h1>Transparência em Primeiro Lugar</h1>
   <p>No nosso abrigo, cada recurso é utilizado com responsabilidade e clareza.<br>
   As doações recebidas e 60% da contribuição mensal dos idosos são totalmente revertidas para custear alimentação, cuidados, infraestrutura e lazer.</p>
@@ -223,7 +1170,293 @@
         </a>
     </div>
   </div>
-  
+  </section>
+
+      <!-- ============================
+       BLOCO-4 AQUI VAI A SEÇÃO "Transparência em Primeiro Lugar" (INCLUÍ A PÁGINA INTEIRA AQUI,
+       preservando exatamente o conteúdo dela)
+       ============================ -->
+
+  <section class="body2">
+
+    <section class="doacao">
+      <h2 class="titulo-secao">Seja parte desta causa</h2>
+
+      <div class="linha-decorativa">
+        <svg viewBox="0 0 1100 150" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,50 C150,120 300,20 450,90 C600,160 750,40 1100,100" />
+        </svg>
+      </div>
+
+      <div class="conteudo-doacao">
+        <div class="texto-doacao">
+          <p>Cada contribuição é um passo para garantir dignidade, cuidado e amor aos nossos moradores.</p>
+          <p>Você pode escolher ajudar de duas formas: apoiar o abrigo em sua missão ou direcionar sua doação para um idoso específico.</p>
+          <p>Aqui a transparência é prioridade: todas as doações são registradas, e você poderá acompanhar como sua ajuda está fazendo diferença.</p>
+        </div>
+
+        <div class="cartoes-doacao">
+          <div class="card" id="c1">
+            <h3>Doar para o Abrigo</h3>
+            <div class="icone-casa">
+              <i class="fa-solid fa-house-chimney"></i>
+              <i class="fa-solid fa-heart icone-coracao"></i>
+            </div>
+            <p>
+              Ajude a manter nosso espaço funcionando, cobrindo custos com alimentação,
+              cuidados médicos, medicamentos e manutenção. <br><br>
+              Sua doação é fundamental para que possamos continuar acolhendo com dignidade.
+            </p>
+            <button class="botao">Fazer Doação</button>
+          </div>
+
+          <div class="card" id="c2">
+            <h3>Doar para um Idoso</h3>
+            <div class="icones-idosos">
+              <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="Idoso 1">
+              <img src="https://cdn-icons-png.flaticon.com/512/4140/4140051.png" alt="Idosa 2">
+              <img src="https://cdn-icons-png.flaticon.com/512/4140/4140037.png" alt="Idoso 3">
+              <img src="https://cdn-icons-png.flaticon.com/512/4140/4140061.png" alt="Idosa 4">
+            </div>
+            <p>
+              Escolha um de nossos moradores e acompanhe de perto o impacto da sua contribuição. <br><br>
+              Você receberá atualizações sobre como sua ajuda está transformando a vida dessa pessoa.
+            </p>
+            <button class="botao">Escolher Idoso</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="not">
+      <section class="noticias">
+        <h2>Notícias & Atualizações</h2>
+        <div class="not2">
+          <div class="lista-noticias">
+            <div class="noticia">
+              <div class="data">12/08/2025</div>
+              <div class="conteudo">
+                <h4>Chegaram novos equipamentos para fisioterapia</h4>
+                <p>Graças às doações do último mês, ampliamos as atividades de cuidado físico.</p>
+              </div>
+              <div class="icone"><i class="fa-regular fa-bell"></i></div>
+            </div>
+
+            <div class="noticia">
+              <div class="data">04/08/2025</div>
+              <div class="conteudo">
+                <h4>Almoço comunitário com voluntários</h4>
+                <p>Um dia especial de integração e afeto com a comunidade.</p>
+              </div>
+              <div class="icone"><i class="fa-regular fa-bell"></i></div>
+            </div>
+
+            <div class="noticia">
+              <div class="data">25/07/2025</div>
+              <div class="conteudo">
+                <h4>Relatório financeiro de julho disponível</h4>
+                <p>Confira a aplicação dos recursos em alimentação, saúde e manutenção.</p>
+              </div>
+              <div class="icone"><i class="fa-regular fa-bell"></i></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </section>
+
+
+        <!-- ============================
+       BLOCO-5 AQUI VAI A SEÇÃO DO RODAPÉ
+       ============================ -->
+
+  <section>
+      <!-- Seção FAQ -->
+  <section class="faq-section">
+    <h2>Perguntas frequentes</h2>
+    <div class="faq-container">
+
+      <div class="faq-item">
+        <button class="faq-question">Qual o procedimento para acolher um idoso?<span>›</span></button>
+        <div class="faq-answer">
+          <p>Para acolher um idoso, é necessário entrar em contato com nossa equipe social, preencher a ficha de inscrição e apresentar a documentação exigida.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Horário de visita.<span>›</span></button>
+        <div class="faq-answer">
+          <p>As visitas podem ser realizadas de segunda a domingo, das 14h às 17h.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Quantos idosos é abrigado na instituição<span>›</span></button>
+        <div class="faq-answer">
+          <p>Atualmente acolhemos até 40 idosos em regime de residência permanente.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Qual o valor pago.<span>›</span></button>
+        <div class="faq-answer">
+          <p>O valor varia conforme a renda do idoso e o tipo de acomodação, definido após avaliação social.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Qual a idade para poder ser abrigado.<span>›</span></button>
+        <div class="faq-answer">
+          <p>O abrigo recebe idosos a partir de 60 anos de idade.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Quantas alimentações são feitas diariamente.<span>›</span></button>
+        <div class="faq-answer">
+          <p>São servidas cinco refeições por dia: café da manhã, almoço, lanche, jantar e ceia.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Quais são os Profissionais do abrigo.<span>›</span></button>
+        <div class="faq-answer">
+          <p>Contamos com equipe de cuidadores, enfermeiros, assistente social, nutricionista e fisioterapeuta.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="footer-logo">
+          <img src="assets/img/Logo-abrigo_Prancheta-1-768x353.png" alt="Logo Abrigo" />
+        </div>
+        <div class="footer-contact">
+          <p>(00) 0000-0000</p>
+          <p>Contato@abrigo.org.br</p>
+          <p>Rua Exemplo, 123 -- Cidade/UF</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div>
+          <h4>Links</h4>
+          <p>Transparência</p>
+          <p>Doar</p>
+          <p>Notícias</p>
+        </div>
+        <div>
+          <h4>Links</h4>
+          <p>Moradores</p>
+          <p>Sobre</p>
+        </div>
+        <div>
+          <h4>Redes</h4>
+          <p>@instagram / @facebook</p>
+          <p>CNPJ 00.0000.000/0001-00</p>
+        </div>
+            <div>
+          <h4>DEVS</h4>
+          <p>Dacid Emanuel</p>
+          <p>Luis Fernando</p>
+          <p>José Leandro</p>
+          <p>Maycon Júlio</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="footer-copy">@ 2025 Abrigo. Todos os direitos reservados.</p>
+  </footer>
+
+  </section>
+
+  <!-- ============================
+       SCRIPTS
+       - Script do menu mobile (mantive seu MobileNavbar)
+       - Script do carrossel de testimonials da historia (IDs com sufixo 2)
+       - script do Acordeão FAQ
+       ============================ -->
+  <script>
+  /* Mobile navbar que você já usava (principal) */
+  class MobileNavbar {
+    constructor(mobileMenu, navList, navLinks) {
+      this.mobileMenu = document.querySelector(mobileMenu);
+      this.navList = document.querySelector(navList);
+      this.navLinks = document.querySelectorAll(navLinks);
+      this.activeClass = "active";
+      this.handleClick = this.handleClick.bind(this);
+    }
+    animateLinks() {
+      this.navLinks.forEach((link, index) => {
+        link.style.animation
+          ? (link.style.animation = "")
+          : (link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`);
+      });
+    }
+    handleClick() {
+      this.navList.classList.toggle(this.activeClass);
+      this.mobileMenu.classList.toggle(this.activeClass);
+      this.animateLinks();
+    }
+    addClickEvent() {
+      this.mobileMenu.addEventListener("click", this.handleClick);
+    }
+    init() {
+      if (this.mobileMenu) {
+        this.addClickEvent();
+      }
+      return this;
+    }
+  }
+  const mobileNavbar = new MobileNavbar(".mobile-menu", ".nav-list", ".nav-list li");
+  mobileNavbar.init();
+
+  /* Carrossel de testimonials da seção 'Histórias' (IDs terminam em 2) */
+  (function() {
+    const wrapper = document.getElementById('testimonialWrapper2');
+    const nextBtn = document.getElementById('nextBtn2');
+    const prevBtn = document.getElementById('prevBtn2');
+    if (!wrapper || !nextBtn || !prevBtn) return;
+
+    let offset = 0;
+    const step = 380;
+
+    nextBtn.addEventListener('click', () => {
+      const maxOffset = -(wrapper.scrollWidth - wrapper.clientWidth);
+      offset -= step;
+      if (offset < maxOffset) offset = 0;
+      wrapper.style.transform = `translateX(${offset}px)`;
+    });
+
+    prevBtn.addEventListener('click', () => {
+      const maxOffset = -(wrapper.scrollWidth - wrapper.clientWidth);
+      offset += step;
+      if (offset > 0) offset = maxOffset;
+      wrapper.style.transform = `translateX(${offset}px)`;
+    });
+  })();
+  </script>
+    <script>
+    // Acordeão FAQ
+    const questions = document.querySelectorAll(".faq-question");
+    questions.forEach(q => {
+      q.addEventListener("click", () => {
+        const parent = q.parentElement;
+        parent.classList.toggle("active");
+
+        questions.forEach(other => {
+          if (other !== q) {
+            other.parentElement.classList.remove("active");
+          }
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>

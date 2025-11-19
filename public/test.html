@@ -1,404 +1,297 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seja parte desta causa</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      width: 100%;
-      overflow-x: hidden;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #fff;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* --- Seção de Doação --- */
-    .doacao {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 60px 20px 40px;
-      position: relative;
-    }
-
-    .titulo-secao {
-      font-family: 'Dancing Script', cursive;
-      text-align: center;
-      font-size: 2.5rem;
-      color: #2b2b2b;
-      margin-bottom: 50px;
-    }
-
-    .conteudo-doacao {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 40px;
-      position: relative;
-    }
-
-    .texto-doacao {
-      flex: 1 1 45%;
-      font-size: 1.3rem;
-      line-height: 1.9;
-      color: #444;
-      margin-top: 5%;
-      margin-left: 0; /* 🔧 removido -10% que causava scroll */
-      max-width: 100%;
-    }
-
-    .cartoes-doacao {
-      flex: 1 1 45%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .card {
-      background: #fff;
-      width: 100%;
-      max-width: 500px;
-      height: 350px;
-      margin: 0 auto;
-      padding: 30px 25px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      border: 2px solid #000000;
-      text-align: center;
-      position: relative;
-      border-radius: 16px;
-    }
-
-    #c1 {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-
-    #c2 {
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-    }
-
-    .card h3 {
-      font-weight: 600;
-      color: #111;
-      margin-bottom: 5px;
-      font-size: 1rem;
-    }
-
-    .card p {
-      font-size: 0.85rem;
-      color: #555;
-      line-height: 1.6;
-    }
-
-    .botao {
-      background-color: #39b14a;
-      color: #fff;
-      border: none;
-      padding: 10px 25px;
-      border-radius: 25px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .botao:hover {
-      background-color: #2f9a3e;
-    }
-
-    .icones-idosos {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin: 20px 0;
-      flex-wrap: wrap;
-    }
-
-    .icones-idosos img {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      object-fit: cover;
-      background-color: #f2f2f2;
-    }
-
-    .icone-casa {
-      position: relative;
-      display: inline-block;
-      font-size: 2.8rem;
-      color: #000;
-      margin: 10px 0 15px;
-    }
-
-    .icone-coracao {
-      position: absolute;
-      font-size: 1.2rem;
-      color: #2ecc71;
-      top: 18px;
-      left: 22px;
-    }
-
-    /* --- Notícias --- */
-    .not {
-      border: 2px solid black;
-      margin: 90px auto;
-      border-radius: 16px;
-      max-width: 1000px;
-      overflow: hidden;
-    }
-
-    .not2 {
-      border: 2px solid rgb(181, 178, 178);
-      border-radius: 16px;
-      padding: 50px 30px;
-    }
-
-    .noticias {
-      width: 100%;
-      max-width: 1000px;
-      margin: 90px auto;
-      padding: 0 20px 60px;
-      position: relative;
-    }
-
-    .noticias h2 {
-      font-family: 'Dancing Script', cursive;
-      text-align: center;
-      font-size: 2.5rem;
-      color: #2b2b2b;
-      margin-bottom: 40px;
-    }
-
-    .lista-noticias {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .noticia {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: linear-gradient(to right, #f7f1e9, #fff);
-      border-radius: 12px;
-      padding: 18px 25px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-      border: 1px solid #e7e2db;
-    }
-
-    .noticia .data {
-      font-size: 0.85rem;
-      color: #999;
-      margin-right: 20px;
-      min-width: 90px;
-    }
-
-    .noticia .conteudo {
-      flex: 1;
-    }
-
-    .noticia h4 {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin: 0 0 4px;
-      color: #2c2c2c;
-    }
-
-    .noticia p {
-      font-size: 0.9rem;
-      color: #666;
-      margin: 0;
-    }
-
-    .noticia .icone i {
-      color: #c8bba9;
-      font-size: 1.1rem;
-    }
-
-    .linha-decorativa {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 30%;
-      pointer-events: none;
-      opacity: 0.4;
-      overflow: hidden;
-    }
-
-    svg path {
-      stroke: #cfc8bf;
-      stroke-width: 1.5;
-      fill: none;
-    }
-
-    /* --- RESPONSIVIDADE --- */
-
-    /* Tablets */
-    @media (max-width: 992px) {
-      .conteudo-doacao {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .texto-doacao {
-        margin: 0 auto;
-        text-align: center;
-        font-size: 1.2rem;
-        line-height: 1.8;
-      }
-
-      .card {
-        width: 85%;
-        max-width: 420px;
-        height: auto;
-      }
-
-      .not {
-        margin: 60px 20px;
-      }
-    }
-
-    /* Celulares */
-    @media (max-width: 600px) {
-      .titulo-secao {
-        font-size: 2rem;
-      }
-
-      .texto-doacao {
-        font-size: 1rem;
-        line-height: 1.7;
-      }
-
-      .card {
-        width: 90%;
-        height: auto;
-        padding: 25px 20px;
-      }
-
-      .not {
-        margin: 40px 10px;
-      }
-
-      .not2 {
-        padding: 30px 20px;
-      }
-
-      .noticia {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      .noticia h4 {
-        font-size: 1.1rem;
-      }
-
-      .noticia p {
-        font-size: 0.9rem;
-      }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perguntas Frequentes - São Francisco de Assis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="faq.css">
 </head>
 <body>
+<style>
+  /* Reset e base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <section class="doacao">
-    <h2 class="titulo-secao">Seja parte desta causa</h2>
+body {
+  background-color: #E9DFD1;
+  color: #2c2c2c;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.5;
+}
 
-    <div class="linha-decorativa">
-      <svg viewBox="0 0 1100 150" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,50 C150,120 300,20 450,90 C600,160 750,40 1100,100" />
-      </svg>
-    </div>
+/* FAQ */
+.faq-section {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 0 20px;
+}
 
-    <div class="conteudo-doacao">
-      <div class="texto-doacao">
-        <p>Cada contribuição é um passo para garantir dignidade, cuidado e amor aos nossos moradores.</p>
-        <p>Você pode escolher ajudar de duas formas: apoiar o abrigo em sua missão ou direcionar sua doação para um idoso específico.</p>
-        <p>Aqui a transparência é prioridade: todas as doações são registradas, e você poderá acompanhar como sua ajuda está fazendo diferença.</p>
+.faq-section h2 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  border-left: 5px solid #2c2c2c;
+  padding-left: 15px;
+  margin-bottom: 30px;
+}
+
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.faq-item {
+  background-color: #E9DFD1;
+  border-bottom: 1px solid #c8bbaa;
+  transition: all 0.3s ease;
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: left;
+  padding: 18px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #2c2c2c;
+}
+
+.faq-question span {
+  font-size: 1.3rem;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question span {
+  transform: rotate(90deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  background-color: #f4ede2;
+  transition: max-height 0.4s ease;
+  padding: 0 15px;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+  padding: 15px;
+}
+
+/* Rodapé */
+.footer {
+  background-color: #4a443f;
+  color: #f0edea;
+  margin-top: 100px;
+  padding: 40px 20px 25px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.footer-left {
+  flex: 1 1 250px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.footer-logo img {
+  width: 110px;
+  height: 60px;
+ 
+}
+
+.footer-logo p {
+  font-family: 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.footer-contact p {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 50px;
+  flex: 2 1 500px;
+  flex-wrap: wrap;
+}
+
+.footer-links h4 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.footer-links p {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.footer-copy {
+  text-align: left;
+  font-size: 0.85rem;
+  margin-top: 30px;
+  color: #d4d0cc;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .faq-section {
+    margin: 60px auto;
+  }
+
+  .faq-section h2 {
+    font-size: 1.6rem;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer-copy {
+    text-align: center;
+  }
+}
+
+</style>
+  <!-- Seção FAQ -->
+  <section class="faq-section">
+    <h2>Perguntas frequentes</h2>
+    <div class="faq-container">
+
+      <div class="faq-item">
+        <button class="faq-question">Qual o procedimento para acolher um idoso?<span>›</span></button>
+        <div class="faq-answer">
+          <p>Para acolher um idoso, é necessário entrar em contato com nossa equipe social, preencher a ficha de inscrição e apresentar a documentação exigida.</p>
+        </div>
       </div>
 
-      <div class="cartoes-doacao">
-        <div class="card" id="c1">
-          <h3>Doar para o Abrigo</h3>
-          <div class="icone-casa">
-            <i class="fa-solid fa-house-chimney"></i>
-            <i class="fa-solid fa-heart icone-coracao"></i>
-          </div>
-          <p>
-            Ajude a manter nosso espaço funcionando, cobrindo custos com alimentação,
-            cuidados médicos, medicamentos e manutenção. <br><br>
-            Sua doação é fundamental para que possamos continuar acolhendo com dignidade.
-          </p>
-          <button class="botao">Fazer Doação</button>
-        </div>
-
-        <div class="card" id="c2">
-          <h3>Doar para um Idoso</h3>
-          <div class="icones-idosos">
-            <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="Idoso 1">
-            <img src="https://cdn-icons-png.flaticon.com/512/4140/4140051.png" alt="Idosa 2">
-            <img src="https://cdn-icons-png.flaticon.com/512/4140/4140037.png" alt="Idoso 3">
-            <img src="https://cdn-icons-png.flaticon.com/512/4140/4140061.png" alt="Idosa 4">
-          </div>
-          <p>
-            Escolha um de nossos moradores e acompanhe de perto o impacto da sua contribuição. <br><br>
-            Você receberá atualizações sobre como sua ajuda está transformando a vida dessa pessoa.
-          </p>
-          <button class="botao">Escolher Idoso</button>
+      <div class="faq-item">
+        <button class="faq-question">Horário de visita.<span>›</span></button>
+        <div class="faq-answer">
+          <p>As visitas podem ser realizadas de segunda a domingo, das 14h às 17h.</p>
         </div>
       </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Quantos idosos é abrigado na instituição<span>›</span></button>
+        <div class="faq-answer">
+          <p>Atualmente acolhemos até 40 idosos em regime de residência permanente.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Qual o valor pago.<span>›</span></button>
+        <div class="faq-answer">
+          <p>O valor varia conforme a renda do idoso e o tipo de acomodação, definido após avaliação social.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Qual a idade para poder ser abrigado.<span>›</span></button>
+        <div class="faq-answer">
+          <p>O abrigo recebe idosos a partir de 60 anos de idade.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Quantas alimentações são feitas diariamente.<span>›</span></button>
+        <div class="faq-answer">
+          <p>São servidas cinco refeições por dia: café da manhã, almoço, lanche, jantar e ceia.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Quais são os Profissionais do abrigo.<span>›</span></button>
+        <div class="faq-answer">
+          <p>Contamos com equipe de cuidadores, enfermeiros, assistente social, nutricionista e fisioterapeuta.</p>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <div class="not">
-    <section class="noticias">
-      <h2>Notícias & Atualizações</h2>
-      <div class="not2">
-        <div class="lista-noticias">
-          <div class="noticia">
-            <div class="data">12/08/2025</div>
-            <div class="conteudo">
-              <h4>Chegaram novos equipamentos para fisioterapia</h4>
-              <p>Graças às doações do último mês, ampliamos as atividades de cuidado físico.</p>
-            </div>
-            <div class="icone"><i class="fa-regular fa-bell"></i></div>
-          </div>
-
-          <div class="noticia">
-            <div class="data">04/08/2025</div>
-            <div class="conteudo">
-              <h4>Almoço comunitário com voluntários</h4>
-              <p>Um dia especial de integração e afeto com a comunidade.</p>
-            </div>
-            <div class="icone"><i class="fa-regular fa-bell"></i></div>
-          </div>
-
-          <div class="noticia">
-            <div class="data">25/07/2025</div>
-            <div class="conteudo">
-              <h4>Relatório financeiro de julho disponível</h4>
-              <p>Confira a aplicação dos recursos em alimentação, saúde e manutenção.</p>
-            </div>
-            <div class="icone"><i class="fa-regular fa-bell"></i></div>
-          </div>
+  <!-- Rodapé -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="footer-logo">
+          <img src="assets/img/Logo-abrigo_Prancheta-1-768x353.png" alt="Logo Abrigo" />
+        </div>
+        <div class="footer-contact">
+          <p>(00) 0000-0000</p>
+          <p>Contato@abrigo.org.br</p>
+          <p>Rua Exemplo, 123 -- Cidade/UF</p>
         </div>
       </div>
-    </section>
-  </div>
+
+      <div class="footer-links">
+        <div>
+          <h4>Links</h4>
+          <p>Transparência</p>
+          <p>Doar</p>
+          <p>Notícias</p>
+        </div>
+        <div>
+          <h4>Links</h4>
+          <p>Moradores</p>
+          <p>Sobre</p>
+        </div>
+        <div>
+          <h4>Redes</h4>
+          <p>@instagram / @facebook</p>
+          <p>CNPJ 00.0000.000/0001-00</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="footer-copy">@ 2025 Abrigo. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // Acordeão FAQ
+    const questions = document.querySelectorAll(".faq-question");
+    questions.forEach(q => {
+      q.addEventListener("click", () => {
+        const parent = q.parentElement;
+        parent.classList.toggle("active");
+
+        questions.forEach(other => {
+          if (other !== q) {
+            other.parentElement.classList.remove("active");
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
